@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.KFet;
+import model.sync.Synchronize;
 
 import tools.ImageLoader;
 
@@ -25,61 +26,107 @@ public class SyncFrame extends JFrame {
 		return instance;
 	}
 	
-	private JCheckBox commandeCB, tresorCB, achatVenteCB, stockCB;
+	private JCheckBox commandeCB, tresorCB, achatVenteCB, stockCB, menuPlatCB;
 	private JButton upButton, downButton;
-	private JLabel title, informations;
-	private JPanel buttonsPan, cBPan;
+	private JLabel title;
+	private JPanel buttonsPan;
 	
 	private SyncFrame() {
 		this.setSize(new Dimension(300,200));
 
 		this.buttonsPan = new JPanel();
 		this.buttonsPan.setLayout(new BoxLayout(this.buttonsPan,BoxLayout.LINE_AXIS));
-		this.cBPan = new JPanel();
-		this.cBPan.setLayout(new BoxLayout(this.cBPan,BoxLayout.PAGE_AXIS));
 
 		this.commandeCB = new JCheckBox("Commandes");
 		this.tresorCB = new JCheckBox("Tresorerie");
 		this.achatVenteCB = new JCheckBox("Achats & ventes");
 		this.stockCB = new JCheckBox("Stocks");
+		this.menuPlatCB = new JCheckBox("Menu & Plat");
 		
 		
-		this.upButton = new JButton(new ImageIcon(ImageLoader.getImageLoader("global").getImage("flecheup")));
-		this.downButton = new JButton(new ImageIcon(ImageLoader.getImageLoader("global").getImage("flechedown")));
+		this.upButton = new JButton("Synchro  vers  serveur");
+		this.downButton = new JButton("Synchro depuis serveur");
 
-		this.upButton.addActionListener(new syncActionListener("up",this));
-		this.downButton.addActionListener(new syncActionListener("down",this));
+		this.upButton.addActionListener(new syncActionListener(Synchronize.UP,this));
+		this.downButton.addActionListener(new syncActionListener(Synchronize.DOWN,this));
 		
 		this.title = new JLabel("Synchronisation");
-		this.informations = new JLabel("");
 		
-		this.setLayout(new BorderLayout());
+		this.setLayout(new BoxLayout(this.getContentPane(),BoxLayout.PAGE_AXIS));
 
-		this.add(this.title,BorderLayout.NORTH);
-		this.add(this.buttonsPan,BorderLayout.CENTER);
+		this.add(this.title);
+
+		this.add(this.commandeCB);
+		this.add(this.tresorCB);
+		this.add(this.achatVenteCB);
+		this.add(this.stockCB);
+		this.add(this.menuPlatCB);
+
+		this.add(this.buttonsPan);
+		
 		this.buttonsPan.add(this.upButton);
 		this.buttonsPan.add(this.downButton);
-		this.add(this.informations,BorderLayout.SOUTH);
 		
 		this.pack();
 	}
 	
 	public class syncActionListener implements ActionListener {
-		private String ac;
+		private int way;
 		private SyncFrame sf;
-		public syncActionListener(String ac,SyncFrame sf) {
-			this.ac = ac;
+		public syncActionListener(int way,SyncFrame sf) {
+			this.way = way;
 			this.sf = sf;
 		}
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			if(this.ac.equals("up")) {
-				KFet.loadKFet(sf);
-			}
-			if(this.ac.equals("down")) {
-				KFet.saveKFet(sf);
-			}
+			Synchronize.sync(way,
+					sf.getCommandeCB().isSelected(),
+					sf.getStockCB().isSelected(),
+					sf.getAchatVenteCB().isSelected(),
+					sf.getTresorCB().isSelected(),
+					sf.getMenuPlatCB().isSelected()
+				);
 		}
 		
+	}
+
+	public JCheckBox getCommandeCB() {
+		return commandeCB;
+	}
+
+	public void setCommandeCB(JCheckBox commandeCB) {
+		this.commandeCB = commandeCB;
+	}
+
+	public JCheckBox getTresorCB() {
+		return tresorCB;
+	}
+
+	public void setTresorCB(JCheckBox tresorCB) {
+		this.tresorCB = tresorCB;
+	}
+
+	public JCheckBox getAchatVenteCB() {
+		return achatVenteCB;
+	}
+
+	public void setAchatVenteCB(JCheckBox achatVenteCB) {
+		this.achatVenteCB = achatVenteCB;
+	}
+
+	public JCheckBox getStockCB() {
+		return stockCB;
+	}
+
+	public void setStockCB(JCheckBox stockCB) {
+		this.stockCB = stockCB;
+	}
+
+	public JCheckBox getMenuPlatCB() {
+		return menuPlatCB;
+	}
+
+	public void setMenuPlatCB(JCheckBox menuPlatCB) {
+		this.menuPlatCB = menuPlatCB;
 	}
 }
