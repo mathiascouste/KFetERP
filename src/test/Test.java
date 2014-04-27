@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import model.KFet;
+
 import tools.ImageLoader;
 import view.KFrame;
 import view.commande.ButtonZone;
@@ -12,6 +14,9 @@ import view.commande.ButtonZone;
 public class Test {
 	static public void main(String[]args) {
 		loadInRam();
+		
+		KFet.getInstance().getStock().loadFromXml();
+		
 		KFrame test = new KFrame();
 		test.setVisible(true);
 	}

@@ -12,8 +12,8 @@ import javax.swing.JTextField;
 
 import model.stock.Item;
 
-@SuppressWarnings("serial")
-public class ItemPanel extends JPanel {
+	@SuppressWarnings("serial")
+	public class ItemPanel extends JPanel {
     private Item item;
     private JTextField nbrMarch, nbrHorsMarch;
     private JLabel labelIntitule, labelPrix, labelQteMarch, labelValeur;

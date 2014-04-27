@@ -17,6 +17,11 @@ public class Item {
 		this.prix = prix;
 		this.quantiteMarch = quantiteMarch;
 	}
+	
+	private void calculate() {
+		double prixUni = this.prix / this.quantiteMarch;
+		this.valeur = prixUni*(this.quantiteMarch*this.nbrMarch + this.nbrHorsMarch);
+	}
 
 	public String getIntitule() {
 		return intitule;
@@ -32,6 +37,7 @@ public class Item {
 
 	public void setPrix(double prix) {
 		this.prix = prix;
+		this.calculate();
 	}
 
 	public int getQuantiteMarch() {
@@ -40,6 +46,7 @@ public class Item {
 
 	public void setQuantiteMarch(int quantiteMarch) {
 		this.quantiteMarch = quantiteMarch;
+		this.calculate();
 	}
 
 	public int getNbrMarch() {
@@ -48,6 +55,7 @@ public class Item {
 
 	public void setNbrMarch(int nbrMarch) {
 		this.nbrMarch = nbrMarch;
+		this.calculate();
 	}
 
 	public int getNbrHorsMarch() {
@@ -56,6 +64,7 @@ public class Item {
 
 	public void setNbrHorsMarch(int nbrHorsMarch) {
 		this.nbrHorsMarch = nbrHorsMarch;
+		this.calculate();
 	}
 
 	public double getValeur() {
@@ -64,5 +73,16 @@ public class Item {
 
 	public void setValeur(double valeur) {
 		this.valeur = valeur;
+	}
+	
+	public String toString() {
+		String toRet = "";
+		toRet += this.intitule;
+		toRet += this.prix;
+		toRet += this.quantiteMarch;
+		toRet += this.nbrMarch;
+		toRet += this.nbrHorsMarch;
+		toRet += this.valeur;
+		return toRet;
 	}
 }

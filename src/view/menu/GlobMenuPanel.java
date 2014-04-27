@@ -59,6 +59,7 @@ public class GlobMenuPanel extends JPanel { // 1000 x 600
 		this.recap = new JButton("RECAP");
 		this.quitter = new JButton("QUITTER");
 
+		this.stock.addActionListener(new MenuListener(4));
 		this.transf.addActionListener(new MenuListener(2));
 		this.quitter.addActionListener(new MenuListener(3));
 
@@ -85,6 +86,12 @@ public class GlobMenuPanel extends JPanel { // 1000 x 600
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			switch(this.type) {
+			/* 0 : commande
+			 * 1 : compte
+			 * 2 : sync
+			 * 3 : quitter
+			 * 4 : stock
+			 */
 			case 0:
 				System.out.println("test");
 				Commander.getInstance().broadcastMessage("panel=commande", null);
@@ -95,10 +102,12 @@ public class GlobMenuPanel extends JPanel { // 1000 x 600
 			case 2:
 				SyncFrame sf = SyncFrame.getInstance();
 				sf.setVisible(true);
-				//Commander.getInstance().broadcastMessage("panel=tranf", null);
 				break;
 			case 3:
 				Commander.getInstance().broadcastMessage("programQUIT", null);
+				break;
+			case 4:
+				Commander.getInstance().broadcastMessage("panel=stock", null);
 				break;
 			default:
 				break;

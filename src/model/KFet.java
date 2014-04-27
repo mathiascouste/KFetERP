@@ -43,4 +43,28 @@ public class KFet implements Serializable {
 	public static void saveKFet(SyncFrame f) {
 		
 	}
+
+	public List<Journee> getJournees() {
+		return journees;
+	}
+
+	public void setJournees(List<Journee> journees) {
+		this.journees = journees;
+	}
+
+	public Stock getStock() {
+		return stock;
+	}
+
+	public void setStock(Stock stock) {
+		this.stock = stock;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public static void setInstance(KFet instance) {
+		KFet.instance = instance;
+	}
 }
