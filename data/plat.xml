@@ -1,0 +1,37 @@
+<xml>
+	<item id="0">
+		<nom>dessert</nom>
+		<prix>0.50</prix>
+		<img>plat_dessert</img>
+	</item>
+	<item id="0">
+		<nom>boisson</nom>
+		<prix>0.8</prix>
+		<img>plat_boisson</img>
+	</item>
+	<item id="0">
+		<nom>1 croq</nom>
+		<prix>1.0</prix>
+		<img>plat_1croq</img>
+	</item>
+	<item id="0">
+		<nom>2 croq</nom>
+		<prix>1.5</prix>
+		<img>plat_1croq</img>
+	</item>
+	<item id="0">
+		<nom>hotdog</nom>
+		<prix>1.5</prix>
+		<img>plat_hotdog</img>
+	</item>
+	<item id="0">
+		<nom>nouille</nom>
+		<prix>1.8</prix>
+		<img>plat_nouille</img>
+	</item>
+	<item id="0">
+		<nom>cafe</nom>
+		<prix>0.20</prix>
+		<img>plat_cafe</img>
+	</item>
+</xml>

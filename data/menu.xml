@@ -1,0 +1,22 @@
+<xml>
+	<item id="0">
+		<nom>Menu nouille</nom>
+		<prix>2.0</prix>
+		<img>menu_nouille</img>
+	</item>
+	<item id="0">
+		<nom>Menu Croqs</nom>
+		<prix>2.0</prix>
+		<img>menu_croq</img>
+	</item>
+	<item id="0">
+		<nom>Menu HotDog</nom>
+		<prix>2.0</prix>
+		<img>menu_hotdog</img>
+	</item>
+	<item id="0">
+		<nom>Menu salade</nom>
+		<prix>2.0</prix>
+		<img>menu_salade</img>
+	</item>
+</xml>
