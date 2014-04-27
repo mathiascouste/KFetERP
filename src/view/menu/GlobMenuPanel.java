@@ -1,7 +1,6 @@
 package view.menu;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,28 +15,41 @@ import tools.Commander;
 import tools.ImageLoader;
 import view.sync.SyncFrame;
 
-public class GlobMenuPanel extends JPanel { // 1000 x 600
-	JLabel picLabel;
-	JPanel center,bottom;
-	JButton commande, stock, tresorerie, achatvente;
-	JButton transf, help, print,recap,quitter;
-	JLabel bottomText;
+public class GlobMenuPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
+	private static final int WIDTH = 1000;
+	private static final int HEIGHT = 600;
+	private static final int HEIGHT_CENTER = 300;
+	private static final int HEIGHT_BOTTOM = 100;
+	
+	private JLabel picLabel;
+	private JPanel center,bottom;
+	private JButton commande, stock, tresorerie, achatvente;
+	private JButton transf, help, print,recap,quitter;
+	private JLabel bottomText;
+	
+	private final ImageLoader imgL = ImageLoader.getImageLoader("global");
 	
 	public GlobMenuPanel() {
+		this.setSize(WIDTH,HEIGHT);
+		
 		// Picture
-		this.picLabel = new JLabel(new ImageIcon(ImageLoader.getImageLoader("global").getImage("logo")));
+		this.picLabel = new JLabel(new ImageIcon(imgL.getImage("logo")));
 		
 		// Center Panel
 		this.center = new JPanel();
 		this.center.setLayout(new GridLayout(2,0));
-		this.center.setSize(1000,300);
+		this.center.setSize(WIDTH,HEIGHT_CENTER);
 		
 		this.commande = new JButton("COMMANDES");
 		this.stock = new JButton("STOCK");
 		this.tresorerie = new JButton("TRESORERIE");
 		this.achatvente = new JButton("ACHAT/VENTE");
-		
-		this.commande.addActionListener(new MenuListener(0));
+
+		this.commande.addActionListener(new MenuListener(MenuListener.COMMANDE));
+		this.tresorerie.addActionListener(new MenuListener(MenuListener.COMPTE));
+		this.stock.addActionListener(new MenuListener(MenuListener.STOCK));
 
 		this.center.add(this.commande);
 		this.center.add(this.achatvente);
@@ -48,20 +60,19 @@ public class GlobMenuPanel extends JPanel { // 1000 x 600
 		
 		this.bottom = new JPanel();
 		this.bottom.setLayout(new BoxLayout(this.bottom,BoxLayout.LINE_AXIS));
-		this.center.setSize(1000,100);
+		this.bottom.setSize(WIDTH,HEIGHT_BOTTOM);
 
-		this.transf = new JButton(new ImageIcon(ImageLoader.getImageLoader("global").getImage("sync")));
-		this.help = new JButton(new ImageIcon(ImageLoader.getImageLoader("global").getImage("help")));
-		this.print = new JButton(new ImageIcon(ImageLoader.getImageLoader("global").getImage("print")));
+		this.transf = new JButton(new ImageIcon(imgL.getImage("sync")));
+		this.help = new JButton(new ImageIcon(imgL.getImage("help")));
+		this.print = new JButton(new ImageIcon(imgL.getImage("print")));
 
 		this.bottomText = new JLabel("© Mathias Cousté");
 		
 		this.recap = new JButton("RECAP");
 		this.quitter = new JButton("QUITTER");
 
-		this.stock.addActionListener(new MenuListener(4));
-		this.transf.addActionListener(new MenuListener(2));
-		this.quitter.addActionListener(new MenuListener(3));
+		this.transf.addActionListener(new MenuListener(MenuListener.SYNC));
+		this.quitter.addActionListener(new MenuListener(MenuListener.QUITTER));
 
 		this.bottom.add(this.transf);
 		this.bottom.add(this.help);
@@ -79,21 +90,21 @@ public class GlobMenuPanel extends JPanel { // 1000 x 600
 	}
 	
 	private class MenuListener implements ActionListener {
-		int type;
+		public static final int COMMANDE = 0;
+		public static final int COMPTE = 1;
+		public static final int SYNC = 2;
+		public static final int QUITTER = 3;
+		public static final int STOCK = 4;
+		
+		private int type;
+		
 		public MenuListener(int type) {
 			this.type = type;
 		}
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			switch(this.type) {
-			/* 0 : commande
-			 * 1 : compte
-			 * 2 : sync
-			 * 3 : quitter
-			 * 4 : stock
-			 */
 			case 0:
-				System.out.println("test");
 				Commander.getInstance().broadcastMessage("panel=commande", null);
 				break;
 			case 1:
@@ -113,5 +124,113 @@ public class GlobMenuPanel extends JPanel { // 1000 x 600
 				break;
 			}
 		}
+	}
+
+	public JLabel getPicLabel() {
+		return picLabel;
+	}
+
+	public void setPicLabel(JLabel picLabel) {
+		this.picLabel = picLabel;
+	}
+
+	public JPanel getCenter() {
+		return center;
+	}
+
+	public void setCenter(JPanel center) {
+		this.center = center;
+	}
+
+	public JPanel getBottom() {
+		return bottom;
+	}
+
+	public void setBottom(JPanel bottom) {
+		this.bottom = bottom;
+	}
+
+	public JButton getCommande() {
+		return commande;
+	}
+
+	public void setCommande(JButton commande) {
+		this.commande = commande;
+	}
+
+	public JButton getStock() {
+		return stock;
+	}
+
+	public void setStock(JButton stock) {
+		this.stock = stock;
+	}
+
+	public JButton getTresorerie() {
+		return tresorerie;
+	}
+
+	public void setTresorerie(JButton tresorerie) {
+		this.tresorerie = tresorerie;
+	}
+
+	public JButton getAchatvente() {
+		return achatvente;
+	}
+
+	public void setAchatvente(JButton achatvente) {
+		this.achatvente = achatvente;
+	}
+
+	public JButton getTransf() {
+		return transf;
+	}
+
+	public void setTransf(JButton transf) {
+		this.transf = transf;
+	}
+
+	public JButton getHelp() {
+		return help;
+	}
+
+	public void setHelp(JButton help) {
+		this.help = help;
+	}
+
+	public JButton getPrint() {
+		return print;
+	}
+
+	public void setPrint(JButton print) {
+		this.print = print;
+	}
+
+	public JButton getRecap() {
+		return recap;
+	}
+
+	public void setRecap(JButton recap) {
+		this.recap = recap;
+	}
+
+	public JButton getQuitter() {
+		return quitter;
+	}
+
+	public void setQuitter(JButton quitter) {
+		this.quitter = quitter;
+	}
+
+	public JLabel getBottomText() {
+		return bottomText;
+	}
+
+	public void setBottomText(JLabel bottomText) {
+		this.bottomText = bottomText;
+	}
+
+	public ImageLoader getImgL() {
+		return imgL;
 	}
 }

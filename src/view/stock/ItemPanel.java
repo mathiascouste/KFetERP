@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -15,14 +14,18 @@ import model.stock.Item;
 
 @SuppressWarnings("serial")
 public class ItemPanel extends JPanel {
+	private static final int WIDTH = 1000;
+	private static final int HEIGHT = 600;
+	private static final int MAX_CHAR = 10;
+	
 	private Item item;
 	private JTextField nbrMarch, nbrHorsMarch;
 	private JLabel labelIntitule, labelPrix, labelQteMarch, labelValeur;
 
-	DecimalFormat df;
+	private DecimalFormat df;
 
 	public ItemPanel(Item item) {
-		this.setMinimumSize(new Dimension(1000,50));
+		this.setMinimumSize(new Dimension(WIDTH,HEIGHT));
 		df = new DecimalFormat("0.00");
 		df.setMinimumFractionDigits(2); // nb de chiffres apres la virgule
 		this.item = item;
@@ -32,11 +35,11 @@ public class ItemPanel extends JPanel {
 				.getNbrHorsMarch()));
 		this.nbrHorsMarch.setHorizontalAlignment(JTextField.CENTER);
 		String lblStr = item.getIntitule();
-		if(lblStr.length() > 10) {
-			lblStr = lblStr.substring(0, 10);
+		if(lblStr.length() > MAX_CHAR) {
+			lblStr = lblStr.substring(0, MAX_CHAR);
 			lblStr += "...";
 		} else {
-			for(int i = lblStr.length(); i < 14 ; i++) {
+			for(int i = lblStr.length(); i < MAX_CHAR+4 ; i++) {
 				lblStr += " ";
 			}
 		}
@@ -77,12 +80,6 @@ public class ItemPanel extends JPanel {
 			if (!isNumeric(nbrMarch.getText())
 					|| !isNumeric(nbrHorsMarch.getText())) {
 				labelValeur.setText("0");
-				if (!isNumeric(nbrMarch.getText())) {
-					// nbrMarch.setText("");
-				}
-				if (!isNumeric(nbrHorsMarch.getText())) {
-					// nbrHorsMarch.setText("");
-				}
 			} else {
 				nbMarch = Integer.parseInt(nbrMarch.getText());
 				nbHorsMarch = Integer.parseInt(nbrHorsMarch.getText());
@@ -114,23 +111,67 @@ public class ItemPanel extends JPanel {
 		}
 	}
 
-	// TODO Pour tester, à supprimer
-	public static void main(String[] args) {
-		Item item = new Item();
-		item.setIntitule("Carotte");
-		item.setNbrHorsMarch(0);
-		item.setNbrMarch(10);
-		item.setPrix(1.35);
-		item.setQuantiteMarch(10);
-		item.setValeur(13.5);
-		JFrame frame = new JFrame("TEST ITEMPANEL");
-		JPanel pane = new JPanel();
-		pane.add(new ItemPanel(item));
-		frame.setContentPane(pane);
-		frame.pack(); // Adapte la fenêtre au contenu
-		frame.setMinimumSize(new Dimension(250, 65));
-		frame.setVisible(true);
-		frame.setLocationRelativeTo(null); // Centre la fenêtre
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	public JTextField getNbrMarch() {
+		return nbrMarch;
+	}
+
+	public void setNbrMarch(JTextField nbrMarch) {
+		this.nbrMarch = nbrMarch;
+	}
+
+	public JTextField getNbrHorsMarch() {
+		return nbrHorsMarch;
+	}
+
+	public void setNbrHorsMarch(JTextField nbrHorsMarch) {
+		this.nbrHorsMarch = nbrHorsMarch;
+	}
+
+	public JLabel getLabelIntitule() {
+		return labelIntitule;
+	}
+
+	public void setLabelIntitule(JLabel labelIntitule) {
+		this.labelIntitule = labelIntitule;
+	}
+
+	public JLabel getLabelPrix() {
+		return labelPrix;
+	}
+
+	public void setLabelPrix(JLabel labelPrix) {
+		this.labelPrix = labelPrix;
+	}
+
+	public JLabel getLabelQteMarch() {
+		return labelQteMarch;
+	}
+
+	public void setLabelQteMarch(JLabel labelQteMarch) {
+		this.labelQteMarch = labelQteMarch;
+	}
+
+	public JLabel getLabelValeur() {
+		return labelValeur;
+	}
+
+	public void setLabelValeur(JLabel labelValeur) {
+		this.labelValeur = labelValeur;
+	}
+
+	public DecimalFormat getDf() {
+		return df;
+	}
+
+	public void setDf(DecimalFormat df) {
+		this.df = df;
 	}
 }

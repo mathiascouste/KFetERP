@@ -17,6 +17,8 @@ import tools.ImageLoader;
 import view.interfaces.KPanel;
 
 public class ProduitButton extends JPanel implements KPanel{
+	private static final long serialVersionUID = 1L;
+	
 	// Data
 	private Article article;
 	private String name,imgName,price;
@@ -33,16 +35,11 @@ public class ProduitButton extends JPanel implements KPanel{
 	public ProduitButton(Article article) {
 		Commander.getInstance().addSubscriber(this);
 		
-		this.setArticle(article);
+		this.article = article;
 		this.name = article.getName();
 		this.imgName = article.getImgName();
 		this.price = article.getPrice();
-		
-		this.init();
-	}
-	
-	
-	private void init() {
+
 		this.setBackground(Color.white);
 		this.nameP = new JLabel(name);
 		this.button = new JButton(new ImageIcon(ImageLoader.getImageLoader("buttons").getImage(imgName)));
@@ -82,5 +79,57 @@ public class ProduitButton extends JPanel implements KPanel{
 	@Override
 	public void sendMessage() {
 		Commander.getInstance().broadcastMessage("addArticleToCommande", this.article);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getImgName() {
+		return imgName;
+	}
+
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public JLabel getNameP() {
+		return nameP;
+	}
+
+	public void setNameP(JLabel nameP) {
+		this.nameP = nameP;
+	}
+
+	public JLabel getPriceP() {
+		return priceP;
+	}
+
+	public void setPriceP(JLabel priceP) {
+		this.priceP = priceP;
+	}
+
+	public JButton getButton() {
+		return button;
+	}
+
+	public void setButton(JButton button) {
+		this.button = button;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 }

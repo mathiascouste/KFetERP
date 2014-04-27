@@ -30,13 +30,6 @@ public class StockHandler extends DefaultHandler {
 			inStock = true;
 		}else if(qName.equals("item")){
 			item = new Item();
-			try{
-				int id = Integer.parseInt(attributes.getValue("id"));
-				//item.setId(id);
-			}catch(Exception e){
-				//erreur, le contenu de id n'est pas un entier
-				throw new SAXException(e);
-			}
 			inItem = true;
 		}else {
 			buffer = new StringBuffer();
@@ -69,19 +62,19 @@ public class StockHandler extends DefaultHandler {
 			buffer = null;
 			inIntitule = false;
 		}else if(qName.equals("quantiteMarch")){
-			item.setQuantiteMarch(new Integer(buffer.toString()).intValue());
+			item.setQuantiteMarch(Integer.valueOf(buffer.toString()));
 			buffer = null;
 			inQuantiteMarch = false;
 		}else if(qName.equals("prixMarch")){
-			item.setPrix(new Double(buffer.toString()).doubleValue());
+			item.setPrix(Double.valueOf(buffer.toString()));
 			buffer = null;
 			inPrixMarch = false;
 		}else if(qName.equals("nbrMarch")){
-			item.setNbrMarch(new Integer(buffer.toString()).intValue());
+			item.setNbrMarch(Integer.valueOf(buffer.toString()));
 			buffer = null;
 			inNbrMarch = false;
 		}else if(qName.equals("nbrHorsMarch")){
-			item.setNbrHorsMarch(new Integer(buffer.toString()).intValue());
+			item.setNbrHorsMarch(Integer.valueOf(buffer.toString()));
 			buffer = null;
 			inNbrHorsMarch = false;
 		}else{
@@ -93,19 +86,15 @@ public class StockHandler extends DefaultHandler {
 	public void characters(char[] ch,int start, int length)
 			throws SAXException{
 		String lecture = new String(ch,start,length);
-		if(buffer != null) buffer.append(lecture);       
+		if(buffer != null) {
+			buffer.append(lecture);
+		}     
 	}
 	//début du parsing
 	public void startDocument() throws SAXException {
-		//System.out.println("Début du parsing");
 	}
 	//fin du parsing
 	public void endDocument() throws SAXException {
-		/*System.out.println("Fin du parsing");
-		System.out.println("Resultats du parsing");
-		for(Article p : annuaire){
-			System.out.println(p);
-		}*/
 	}
 	public List<Item> getStocks() {
 		return stocks;
@@ -166,10 +155,5 @@ public class StockHandler extends DefaultHandler {
 	}
 	public void setBuffer(StringBuffer buffer) {
 		this.buffer = buffer;
-	}
-	
-	public void whatIsNull() {
-		if(stocks != null) System.out.println("stock non null");
-		else System.out.println("stock null");
 	}
 }

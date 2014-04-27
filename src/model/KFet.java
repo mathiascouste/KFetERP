@@ -8,7 +8,7 @@ import view.sync.SyncFrame;
 
 import model.stock.Stock;
 
-public class KFet implements Serializable {
+public final class KFet implements Serializable {
 	/**
 	 * 
 	 */

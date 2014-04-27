@@ -16,28 +16,30 @@ import model.Journee;
 import model.KFet;
 
 public class JourneePanel extends JPanel implements KPanel{
+	private static final long serialVersionUID = 1L;
+	
 	private Journee journee;
-	private JLabel journeeLabel, nCommandeLabel, totalLabel;
-	private JButton valideJournee;
+	private JLabel nCommandeLabel, totalLabel;
 	
 	public JourneePanel() {
+		JLabel journeeLabel;
+		JButton valideJournee;
+		
 		Commander.getInstance().addSubscriber(this);
 		
 		this.journee = new Journee();
-		this.journeeLabel = new JLabel("Recap journee :");
+		journeeLabel = new JLabel("Recap journee :");
 		this.nCommandeLabel = new JLabel("Nombre de Commande : 0");
 		this.totalLabel = new JLabel("0 €");
-		this.valideJournee = new JButton("Valider journée");
-		this.valideJournee.addActionListener(new valideJourneeListener());
+		valideJournee = new JButton("Valider journée");
+		valideJournee.addActionListener(new ValideJourneeListener());
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
 		this.add(journeeLabel);
-		this.add(nCommandeLabel);
-		this.add(totalLabel);
+		this.add(this.nCommandeLabel);
+		this.add(this.totalLabel);
 		this.add(valideJournee);
-		
-		this.refresh();
 	}
 	
 	public void refresh() {
@@ -70,7 +72,7 @@ public class JourneePanel extends JPanel implements KPanel{
 		// TODO Auto-generated method stub
 	}
 	
-	private class valideJourneeListener implements ActionListener {
+	private class ValideJourneeListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {

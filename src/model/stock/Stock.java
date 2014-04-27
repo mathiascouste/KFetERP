@@ -1,6 +1,5 @@
 package model.stock;
 
-import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,14 +9,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import model.Article;
-
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import tools.handlers.ArticleHandler;
 import tools.handlers.StockHandler;
-import view.commande.ProduitButton;
 
 public class Stock {
 	private List<Item> stocks;
@@ -43,14 +38,8 @@ public class Stock {
 			}
 			
 		} catch (ParserConfigurationException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		} catch (SAXException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 	

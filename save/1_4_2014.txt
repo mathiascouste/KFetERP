@@ -1,10 +1,7 @@
 ##########    Recapitulatif journée      ##########
-Date : 21/4/2014
-Nombre de commande : 1
-Chiffre de la journée : 4.6
+Date : 28/4/2014
+Nombre de commande : 0
+Chiffre de la journée : 0.0
 -----------------Articles-----------------
-	boisson		:	1
-	Menu nouille	:	1
-	nouille		:	1
 -----------------Articles-----------------
 ##########    Recapitulatif journée      ##########

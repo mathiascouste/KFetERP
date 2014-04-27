@@ -10,7 +10,7 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-public class ImageLoader {
+public final class ImageLoader {
 	private static Map<String, ImageLoader> staticMap = new HashMap<String, ImageLoader>();
 	private Map<String , String> pathingMap;
 	private Map<String , Image> imageMap;

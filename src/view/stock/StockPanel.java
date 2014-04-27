@@ -1,17 +1,16 @@
 package view.stock;
 
-import java.awt.Dimension;
 import java.awt.Panel;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 
 import model.stock.Item;
 import model.stock.Stock;
 
 public class StockPanel extends Panel {
+	private static final long serialVersionUID = 1L;
+	
 	private Stock stock;
 	
 	public StockPanel(Stock stock) {

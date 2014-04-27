@@ -1,18 +1,13 @@
 package test;
 
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.JFrame;
 
 import model.KFet;
 
 import tools.ImageLoader;
 import view.KFrame;
-import view.commande.ButtonZone;
 
-public class Test {
-	static public void main(String[]args) {
+public abstract class Test {
+	public static void main(String[]args) {
 		loadInRam();
 		
 		KFet.getInstance().getStock().loadFromXml();
@@ -21,7 +16,7 @@ public class Test {
 		test.setVisible(true);
 	}
 	
-	static public void loadInRam() {
+	public static void loadInRam() {
 		ImageLoader buttons =  ImageLoader.newImageLoader("buttons");
 		buttons.addPath("img1", "./image/bouton1.png");
 		buttons.addPath("menu_croq", "./image/menu_croq.gif");

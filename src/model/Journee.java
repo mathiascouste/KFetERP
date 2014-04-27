@@ -3,17 +3,16 @@ package model;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.security.KeyStore.Entry;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class Journee {
+	private static final int FRSTYR = 1900;
+	private static final int MAXLENGHT = 8;
+	
 	private int nombreCommande;
 	private double sommeTotale;
 	private List<Commande> commandes;
@@ -40,7 +39,7 @@ public class Journee {
 				i++;
 				this.articles.put(a, i);
 			} else {
-				this.articles.put(a, new Integer(1));
+				this.articles.put(a, 1);
 			}
 		}
 	}
@@ -72,7 +71,7 @@ public class Journee {
 	@SuppressWarnings("deprecation")
 	public void saveJournee() {
 		Date d = new Date();
-		String path = "./save/"+d.getDay()+"_"+(d.getMonth()+1)+"_"+(d.getYear()+1900)+".txt";
+		String path = "./save/"+d.getDay()+"_"+(d.getMonth()+1)+"_"+(d.getYear()+FRSTYR)+".txt";
 		try {
 			FileWriter fileWriter = new FileWriter(path, false);
 			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -81,7 +80,6 @@ public class Journee {
 			bufferedWriter.flush();
 			bufferedWriter.close();
 		} catch (IOException ioe) {
-			ioe.printStackTrace();
 		}
 	}
 	
@@ -90,7 +88,7 @@ public class Journee {
 		String toRet = "";
 		Date d = new Date();
 		toRet += "##########    Recapitulatif journée      ##########\n";
-		toRet += "Date : " + d.getDate() + "/" + (d.getMonth()+1) + "/" + (d.getYear()+1900)+"\n";
+		toRet += "Date : " + d.getDate() + "/" + (d.getMonth()+1) + "/" + (d.getYear()+FRSTYR)+"\n";
 		toRet += "Nombre de commande : " + this.nombreCommande + "\n";
 		toRet += "Chiffre de la journée : " + this.sommeTotale + "\n";
 		toRet += "-----------------Articles-----------------\n";
@@ -98,7 +96,9 @@ public class Journee {
 		    Article cle = entry.getKey();
 		    int valeur = entry.getValue().intValue();
 		    toRet += "\t"+cle.getName()+"\t";
-		    if(cle.getName().length() < 8) toRet += "\t";
+		    if(cle.getName().length() < MAXLENGHT) {
+		    	toRet += "\t";
+		    }
 		    toRet += ":\t" + valeur + "\n";
 		}
 		toRet += "-----------------Articles-----------------\n";

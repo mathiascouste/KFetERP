@@ -1,6 +1,5 @@
 package view.commande;
 
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,26 +16,28 @@ import model.Article;
 import model.Commande;
 
 public class CommandePanel extends JPanel implements KPanel{
+	private static final long serialVersionUID = 1L;
+	
 	private Commande commande;
-	private JLabel commandeLabel,value;
+	private JLabel value;
 	private JList list;
-	private JButton freeButton;
 	
 	public CommandePanel() {
+		JButton freeButton;
+		JLabel commandeLabel;
+		
 		Commander.getInstance().addSubscriber(this);
 		this.commande = new Commande();
-		this.commandeLabel = new JLabel("Commande :");
+		commandeLabel = new JLabel("Commande :");
 		this.value = new JLabel("Value :");
 		this.list = new JList(this.commande.getArticleList().toArray());
-		this.freeButton = new JButton("Vider");
-		this.freeButton.addActionListener(new FreeButtonListener(this));
-		
-		this.refresh();
-		
+		freeButton = new JButton("Vider");
+		freeButton.addActionListener(new FreeButtonListener(this));
+				
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.add(commandeLabel);
-		this.add(list);
-		this.add(value);
+		this.add(this.list);
+		this.add(this.value);
 		this.add(freeButton);
 	}
 	
@@ -77,7 +78,7 @@ public class CommandePanel extends JPanel implements KPanel{
 	}
 	
 	private class FreeButtonListener implements ActionListener{
-		CommandePanel commandePanel;
+		private CommandePanel commandePanel;
 		public FreeButtonListener(CommandePanel commandePanel) {
 			this.commandePanel = commandePanel;
 		}

@@ -82,19 +82,15 @@ public class ArticleHandler extends DefaultHandler {
 	public void characters(char[] ch,int start, int length)
 			throws SAXException{
 		String lecture = new String(ch,start,length);
-		if(buffer != null) buffer.append(lecture);       
+		if(buffer != null) {
+			buffer.append(lecture);
+		}    
 	}
 	//début du parsing
 	public void startDocument() throws SAXException {
-		//System.out.println("Début du parsing");
 	}
 	//fin du parsing
 	public void endDocument() throws SAXException {
-		/*System.out.println("Fin du parsing");
-		System.out.println("Resultats du parsing");
-		for(Article p : annuaire){
-			System.out.println(p);
-		}*/
 	}
 	public List<Article> getAnnuaire() {
 		return annuaire;
