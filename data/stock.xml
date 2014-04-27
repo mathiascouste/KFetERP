@@ -1,0 +1,16 @@
+<xml>
+	<item id="0">
+		<intitule>knacchi</intitule>
+		<prixMarch>0.99</prixMarch>
+		<quantiteMarch>10</quantiteMarch>
+		<nbrMarch>0</nbrMarch>
+		<nbrHorsMarch>0</nbrHorsMarch>
+	</item>
+	<item id="0">
+		<intitule>crepes</intitule>
+		<prixMarch>1.12</prixMarch>
+		<quantiteMarch>10</quantiteMarch>
+		<nbrMarch>0</nbrMarch>
+		<nbrHorsMarch>0</nbrHorsMarch>
+	</item>
+</xml>
