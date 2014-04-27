@@ -9,62 +9,63 @@ import view.sync.SyncFrame;
 import model.stock.Stock;
 
 public final class KFet implements Serializable {
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private static KFet instance;
-	private List<Journee> journees;
-	private Stock stock;
-	
-	private KFet() {
-		this.journees = new ArrayList<Journee>();
-		this.stock = new Stock();
-	}
-	
-	public static KFet getInstance() {
-		if(instance==null) {
-			instance = new KFet();
-		}
-		return instance;
-	}
-	
-	public void addJournee(Journee journee) {
-		this.journees.add(journee);
-	}
-	
-	public String toString() {
-		return "";
-	}
-	
-	public static void loadKFet(SyncFrame f) {
-		
-	}
-	public static void saveKFet(SyncFrame f) {
-		
-	}
+    private static final long serialVersionUID = 1L;
+    private static KFet instance;
+    private List<Journee> journees;
+    private Stock stock;
 
-	public List<Journee> getJournees() {
-		return journees;
-	}
+    private KFet() {
+	this.journees = new ArrayList<Journee>();
+	this.stock = new Stock();
+    }
 
-	public void setJournees(List<Journee> journees) {
-		this.journees = journees;
+    public static KFet getInstance() {
+	if (instance == null) {
+	    instance = new KFet();
 	}
+	return instance;
+    }
 
-	public Stock getStock() {
-		return stock;
-	}
+    public void addJournee(Journee journee) {
+	this.journees.add(journee);
+    }
 
-	public void setStock(Stock stock) {
-		this.stock = stock;
-	}
+    public String toString() {
+	return "";
+    }
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+    public static void loadKFet(SyncFrame f) {
 
-	public static void setInstance(KFet instance) {
-		KFet.instance = instance;
-	}
+    }
+
+    public static void saveKFet(SyncFrame f) {
+
+    }
+
+    public List<Journee> getJournees() {
+	return journees;
+    }
+
+    public void setJournees(List<Journee> journees) {
+	this.journees = journees;
+    }
+
+    public Stock getStock() {
+	return stock;
+    }
+
+    public void setStock(Stock stock) {
+	this.stock = stock;
+    }
+
+    public static long getSerialversionuid() {
+	return serialVersionUID;
+    }
+
+    public static void setInstance(KFet instance) {
+	KFet.instance = instance;
+    }
 }

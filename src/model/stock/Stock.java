@@ -15,52 +15,52 @@ import org.xml.sax.helpers.DefaultHandler;
 import tools.handlers.StockHandler;
 
 public class Stock {
-	private List<Item> stocks;
-	private final String path = "./data/stock.xml";
-	
-	public Stock() {
-		this.stocks = new ArrayList<Item>();
+    private List<Item> stocks;
+    private final String path = "./data/stock.xml";
+
+    public Stock() {
+	this.stocks = new ArrayList<Item>();
+    }
+
+    public void loadFromXml() {
+	SAXParserFactory fabrique = SAXParserFactory.newInstance();
+	SAXParser parseur;
+	try {
+	    parseur = fabrique.newSAXParser();
+	    File fichier = new File(path);
+	    DefaultHandler gestionnaire = new StockHandler();
+	    parseur.parse(fichier, gestionnaire);
+
+	    stocks.clear();
+
+	    for (Item item : ((StockHandler) gestionnaire).getStocks()) {
+		stocks.add(item);
+	    }
+
+	} catch (ParserConfigurationException e1) {
+	} catch (SAXException e1) {
+	} catch (IOException e) {
 	}
-	
-	public void loadFromXml() {
-		SAXParserFactory fabrique = SAXParserFactory.newInstance();
-		SAXParser parseur;
-		try {
-			parseur = fabrique.newSAXParser();
-			File fichier = new File(path);
-			DefaultHandler gestionnaire = new StockHandler();
-			parseur.parse(fichier, gestionnaire);
-			
-			stocks.clear();
-			
-			for(Item item : ((StockHandler) gestionnaire).getStocks()) {
-				stocks.add(item);
-			}
-			
-		} catch (ParserConfigurationException e1) {
-		} catch (SAXException e1) {
-		} catch (IOException e) {
-		}
-	}
-	
-	public String toString() {
-		String toRet = "Stock\n";
-		for(Item item : stocks) {
-			toRet += item + "\n";
-		}
-		
-		return toRet;
+    }
+
+    public String toString() {
+	String toRet = "Stock\n";
+	for (Item item : stocks) {
+	    toRet += item + "\n";
 	}
 
-	public List<Item> getStocks() {
-		return stocks;
-	}
+	return toRet;
+    }
 
-	public void setStocks(List<Item> stocks) {
-		this.stocks = stocks;
-	}
+    public List<Item> getStocks() {
+	return stocks;
+    }
 
-	public String getPath() {
-		return path;
-	}
+    public void setStocks(List<Item> stocks) {
+	this.stocks = stocks;
+    }
+
+    public String getPath() {
+	return path;
+    }
 }

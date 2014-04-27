@@ -14,164 +14,164 @@ import model.stock.Item;
 
 @SuppressWarnings("serial")
 public class ItemPanel extends JPanel {
-	private static final int WIDTH = 1000;
-	private static final int HEIGHT = 600;
-	private static final int MAX_CHAR = 10;
-	
-	private Item item;
-	private JTextField nbrMarch, nbrHorsMarch;
-	private JLabel labelIntitule, labelPrix, labelQteMarch, labelValeur;
+    private static final int WIDTH = 1000;
+    private static final int HEIGHT = 600;
+    private static final int MAX_CHAR = 10;
 
-	private DecimalFormat df;
+    private Item item;
+    private JTextField nbrMarch, nbrHorsMarch;
+    private JLabel labelIntitule, labelPrix, labelQteMarch, labelValeur;
 
-	public ItemPanel(Item item) {
-		this.setMinimumSize(new Dimension(WIDTH,HEIGHT));
-		df = new DecimalFormat("0.00");
-		df.setMinimumFractionDigits(2); // nb de chiffres apres la virgule
-		this.item = item;
-		this.nbrMarch = new JTextField(String.valueOf(item.getNbrMarch()));
-		this.nbrMarch.setHorizontalAlignment(JTextField.CENTER);
-		this.nbrHorsMarch = new JTextField(String.valueOf(item
-				.getNbrHorsMarch()));
-		this.nbrHorsMarch.setHorizontalAlignment(JTextField.CENTER);
-		String lblStr = item.getIntitule();
-		if(lblStr.length() > MAX_CHAR) {
-			lblStr = lblStr.substring(0, MAX_CHAR);
-			lblStr += "...";
-		} else {
-			for(int i = lblStr.length(); i < MAX_CHAR+4 ; i++) {
-				lblStr += " ";
-			}
-		}
-		this.labelIntitule = new JLabel(lblStr, JLabel.CENTER);
-		
-		this.labelPrix = new JLabel(String.valueOf(item.getPrix()),
-				JLabel.CENTER);
-		this.labelQteMarch = new JLabel(
-				String.valueOf(item.getQuantiteMarch()), JLabel.CENTER);
-		this.labelValeur = new JLabel(df.format(item.getValeur()),
-				JLabel.CENTER);
-		this.nbrMarch.addKeyListener(new ClavierListener());
-		this.nbrHorsMarch.addKeyListener(new ClavierListener());
-		this.setLayout(new GridLayout(1, 6));
-		this.add(labelIntitule);
-		this.add(labelPrix);
-		this.add(labelQteMarch);
-		this.add(nbrMarch);
-		this.add(nbrHorsMarch);
-		this.add(labelValeur);
+    private DecimalFormat df;
+
+    public ItemPanel(Item item) {
+	this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+	df = new DecimalFormat("0.00");
+	df.setMinimumFractionDigits(2); // nb de chiffres apres la virgule
+	this.item = item;
+	this.nbrMarch = new JTextField(String.valueOf(item.getNbrMarch()));
+	this.nbrMarch.setHorizontalAlignment(JTextField.CENTER);
+	this.nbrHorsMarch = new JTextField(String.valueOf(item
+		.getNbrHorsMarch()));
+	this.nbrHorsMarch.setHorizontalAlignment(JTextField.CENTER);
+	String lblStr = item.getIntitule();
+	if (lblStr.length() > MAX_CHAR) {
+	    lblStr = lblStr.substring(0, MAX_CHAR);
+	    lblStr += "...";
+	} else {
+	    for (int i = lblStr.length(); i < MAX_CHAR + 4; i++) {
+		lblStr += " ";
+	    }
+	}
+	this.labelIntitule = new JLabel(lblStr, JLabel.CENTER);
+
+	this.labelPrix = new JLabel(String.valueOf(item.getPrix()),
+		JLabel.CENTER);
+	this.labelQteMarch = new JLabel(
+		String.valueOf(item.getQuantiteMarch()), JLabel.CENTER);
+	this.labelValeur = new JLabel(df.format(item.getValeur()),
+		JLabel.CENTER);
+	this.nbrMarch.addKeyListener(new ClavierListener());
+	this.nbrHorsMarch.addKeyListener(new ClavierListener());
+	this.setLayout(new GridLayout(1, 6));
+	this.add(labelIntitule);
+	this.add(labelPrix);
+	this.add(labelQteMarch);
+	this.add(nbrMarch);
+	this.add(nbrHorsMarch);
+	this.add(labelValeur);
+    }
+
+    public class ClavierListener implements KeyListener {
+
+	public ClavierListener() {
+
 	}
 
-	public class ClavierListener implements KeyListener {
+	@Override
+	public void keyPressed(KeyEvent event) {
 
-		public ClavierListener() {
-
-		}
-
-		@Override
-		public void keyPressed(KeyEvent event) {
-
-		}
-
-		@Override
-		public void keyReleased(KeyEvent event) {
-			int nbMarch = 0;
-			int nbHorsMarch = 0;
-			if (!isNumeric(nbrMarch.getText())
-					|| !isNumeric(nbrHorsMarch.getText())) {
-				labelValeur.setText("0");
-			} else {
-				nbMarch = Integer.parseInt(nbrMarch.getText());
-				nbHorsMarch = Integer.parseInt(nbrHorsMarch.getText());
-				item.setNbrMarch(nbMarch);
-				item.setNbrHorsMarch(nbHorsMarch);
-				Double valeurPaquetPlein = item.getPrix() * nbMarch;
-				Double valeurPaquetEntame = nbHorsMarch * item.getPrix()
-						/ item.getQuantiteMarch();
-				Double calcul = valeurPaquetPlein + valeurPaquetEntame;
-				labelValeur.setText(String.valueOf(df.format(calcul)));
-			}
-		}
-
-		@Override
-		public void keyTyped(KeyEvent arg0) {
-			// TODO Auto-generated method stub
-
-		}
-
-		// Retourne true si le paramètre est numérique, false dans le cas
-		// contraire
-		private boolean isNumeric(String s) {
-			try {
-				Integer.parseInt(String.valueOf(s));
-			} catch (NumberFormatException e) {
-				return false;
-			}
-			return true;
-		}
 	}
 
-	public Item getItem() {
-		return item;
+	@Override
+	public void keyReleased(KeyEvent event) {
+	    int nbMarch = 0;
+	    int nbHorsMarch = 0;
+	    if (!isNumeric(nbrMarch.getText())
+		    || !isNumeric(nbrHorsMarch.getText())) {
+		labelValeur.setText("0");
+	    } else {
+		nbMarch = Integer.parseInt(nbrMarch.getText());
+		nbHorsMarch = Integer.parseInt(nbrHorsMarch.getText());
+		item.setNbrMarch(nbMarch);
+		item.setNbrHorsMarch(nbHorsMarch);
+		Double valeurPaquetPlein = item.getPrix() * nbMarch;
+		Double valeurPaquetEntame = nbHorsMarch * item.getPrix()
+			/ item.getQuantiteMarch();
+		Double calcul = valeurPaquetPlein + valeurPaquetEntame;
+		labelValeur.setText(String.valueOf(df.format(calcul)));
+	    }
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+	    // TODO Auto-generated method stub
+
 	}
 
-	public JTextField getNbrMarch() {
-		return nbrMarch;
+	// Retourne true si le paramètre est numérique, false dans le cas
+	// contraire
+	private boolean isNumeric(String s) {
+	    try {
+		Integer.parseInt(String.valueOf(s));
+	    } catch (NumberFormatException e) {
+		return false;
+	    }
+	    return true;
 	}
+    }
 
-	public void setNbrMarch(JTextField nbrMarch) {
-		this.nbrMarch = nbrMarch;
-	}
+    public Item getItem() {
+	return item;
+    }
 
-	public JTextField getNbrHorsMarch() {
-		return nbrHorsMarch;
-	}
+    public void setItem(Item item) {
+	this.item = item;
+    }
 
-	public void setNbrHorsMarch(JTextField nbrHorsMarch) {
-		this.nbrHorsMarch = nbrHorsMarch;
-	}
+    public JTextField getNbrMarch() {
+	return nbrMarch;
+    }
 
-	public JLabel getLabelIntitule() {
-		return labelIntitule;
-	}
+    public void setNbrMarch(JTextField nbrMarch) {
+	this.nbrMarch = nbrMarch;
+    }
 
-	public void setLabelIntitule(JLabel labelIntitule) {
-		this.labelIntitule = labelIntitule;
-	}
+    public JTextField getNbrHorsMarch() {
+	return nbrHorsMarch;
+    }
 
-	public JLabel getLabelPrix() {
-		return labelPrix;
-	}
+    public void setNbrHorsMarch(JTextField nbrHorsMarch) {
+	this.nbrHorsMarch = nbrHorsMarch;
+    }
 
-	public void setLabelPrix(JLabel labelPrix) {
-		this.labelPrix = labelPrix;
-	}
+    public JLabel getLabelIntitule() {
+	return labelIntitule;
+    }
 
-	public JLabel getLabelQteMarch() {
-		return labelQteMarch;
-	}
+    public void setLabelIntitule(JLabel labelIntitule) {
+	this.labelIntitule = labelIntitule;
+    }
 
-	public void setLabelQteMarch(JLabel labelQteMarch) {
-		this.labelQteMarch = labelQteMarch;
-	}
+    public JLabel getLabelPrix() {
+	return labelPrix;
+    }
 
-	public JLabel getLabelValeur() {
-		return labelValeur;
-	}
+    public void setLabelPrix(JLabel labelPrix) {
+	this.labelPrix = labelPrix;
+    }
 
-	public void setLabelValeur(JLabel labelValeur) {
-		this.labelValeur = labelValeur;
-	}
+    public JLabel getLabelQteMarch() {
+	return labelQteMarch;
+    }
 
-	public DecimalFormat getDf() {
-		return df;
-	}
+    public void setLabelQteMarch(JLabel labelQteMarch) {
+	this.labelQteMarch = labelQteMarch;
+    }
 
-	public void setDf(DecimalFormat df) {
-		this.df = df;
-	}
+    public JLabel getLabelValeur() {
+	return labelValeur;
+    }
+
+    public void setLabelValeur(JLabel labelValeur) {
+	this.labelValeur = labelValeur;
+    }
+
+    public DecimalFormat getDf() {
+	return df;
+    }
+
+    public void setDf(DecimalFormat df) {
+	this.df = df;
+    }
 }

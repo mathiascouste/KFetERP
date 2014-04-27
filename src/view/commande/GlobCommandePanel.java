@@ -6,33 +6,33 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 public class GlobCommandePanel extends JPanel {
-	private static final long serialVersionUID = 1L;
-	
-	private ButtonZone bz;
-	private CommandeZone cz;
+    private static final long serialVersionUID = 1L;
 
-	public GlobCommandePanel() {
-		this.setBackground(Color.white);
-		this.bz = new ButtonZone();
-		this.cz = new CommandeZone();
-		this.setLayout(new BorderLayout());
-		this.add(bz, BorderLayout.CENTER);
-		this.add(cz, BorderLayout.EAST);
-	}
+    private ButtonZone bz;
+    private CommandeZone cz;
 
-	public ButtonZone getBz() {
-		return bz;
-	}
+    public GlobCommandePanel() {
+	this.setBackground(Color.white);
+	this.bz = new ButtonZone();
+	this.cz = new CommandeZone();
+	this.setLayout(new BorderLayout());
+	this.add(bz, BorderLayout.CENTER);
+	this.add(cz, BorderLayout.EAST);
+    }
 
-	public void setBz(ButtonZone bz) {
-		this.bz = bz;
-	}
+    public ButtonZone getBz() {
+	return bz;
+    }
 
-	public CommandeZone getCz() {
-		return cz;
-	}
+    public void setBz(ButtonZone bz) {
+	this.bz = bz;
+    }
 
-	public void setCz(CommandeZone cz) {
-		this.cz = cz;
-	}
+    public CommandeZone getCz() {
+	return cz;
+    }
+
+    public void setCz(CommandeZone cz) {
+	this.cz = cz;
+    }
 }

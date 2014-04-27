@@ -4,42 +4,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Commande {
-	private List<Article> articleList;
-	private double valeur;
-	
-	public Commande() {
-		this.valeur = 0;
-		this.articleList = new ArrayList<Article>();
-	}
-	
-	public void add(Article article) {
-		this.valeur += new Double(article.getPrice()).doubleValue();
-		this.articleList.add(article);
-	}
+    private List<Article> articleList;
+    private double valeur;
 
-	public List<Article> getArticleList() {
-		return articleList;
-	}
+    public Commande() {
+	this.valeur = 0;
+	this.articleList = new ArrayList<Article>();
+    }
 
-	public void setArticleList(List<Article> articleList) {
-		this.articleList = articleList;
-	}
+    public void add(Article article) {
+	this.valeur += new Double(article.getPrice()).doubleValue();
+	this.articleList.add(article);
+    }
 
-	public double getValeur() {
-		return valeur;
-	}
+    public List<Article> getArticleList() {
+	return articleList;
+    }
 
-	public void setValeur(double valeur) {
-		this.valeur = valeur;
-	}
+    public void setArticleList(List<Article> articleList) {
+	this.articleList = articleList;
+    }
 
-	public void free() {
-		this.articleList.clear();
-		this.valeur = 0;
-		
-	}
+    public double getValeur() {
+	return valeur;
+    }
 
-	public boolean isEmpty() {
-		return this.articleList.isEmpty();
-	}
+    public void setValeur(double valeur) {
+	this.valeur = valeur;
+    }
+
+    public void free() {
+	this.articleList.clear();
+	this.valeur = 0;
+
+    }
+
+    public boolean isEmpty() {
+	return this.articleList.isEmpty();
+    }
 }
