@@ -17,7 +17,9 @@ public class ItemPanel extends JPanel {
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 600;
     private static final int MAX_CHAR = 10;
-
+    private static final int MAX_CHAR_2 = 14;
+    private static final int MAX_GRID_COLS = 6;
+    
     private Item item;
     private JTextField nbrMarch, nbrHorsMarch;
     private JLabel labelIntitule, labelPrix, labelQteMarch, labelValeur;
@@ -39,7 +41,7 @@ public class ItemPanel extends JPanel {
 	    lblStr = lblStr.substring(0, MAX_CHAR);
 	    lblStr += "...";
 	} else {
-	    for (int i = lblStr.length(); i < MAX_CHAR + 4; i++) {
+	    for (int i = lblStr.length(); i < MAX_CHAR_2; i++) {
 		lblStr += " ";
 	    }
 	}
@@ -53,7 +55,7 @@ public class ItemPanel extends JPanel {
 		JLabel.CENTER);
 	this.nbrMarch.addKeyListener(new ClavierListener());
 	this.nbrHorsMarch.addKeyListener(new ClavierListener());
-	this.setLayout(new GridLayout(1, 6));
+	this.setLayout(new GridLayout(1, MAX_GRID_COLS));
 	this.add(labelIntitule);
 	this.add(labelPrix);
 	this.add(labelQteMarch);

@@ -18,6 +18,7 @@ public class GlobStockPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
     private static final int WIDTH = 1000;
+    private static final int HEIGHT = 600;
     private static final int HEIGHT_TITRE = 50;
     private static final int HEIGHT_SCROLL = 400;
 
@@ -60,8 +61,6 @@ public class GlobStockPanel extends JPanel {
     }
 
     public static void main(String[] args) {
-	int winWidth = 1000;
-	int winHeight = 600;
 	Stock st = new Stock();
 	st.loadFromXml();
 	GlobStockPanel sp = new GlobStockPanel(st);
@@ -69,7 +68,7 @@ public class GlobStockPanel extends JPanel {
 	JFrame f = new JFrame();
 	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	f.setContentPane(sp);
-	f.setSize(winWidth, winHeight);
+	f.setSize(WIDTH, HEIGHT);
 	f.pack();
 	f.setVisible(true);
     }

@@ -16,7 +16,7 @@ import tools.handlers.StockHandler;
 
 public class Stock {
     private List<Item> stocks;
-    private final String path = "./data/stock.xml";
+    private static final String path = "./data/stock.xml";
 
     public Stock() {
 	this.stocks = new ArrayList<Item>();

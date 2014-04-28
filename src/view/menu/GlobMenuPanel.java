@@ -107,21 +107,21 @@ public class GlobMenuPanel extends JPanel {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 	    switch (this.type) {
-	    case 0:
+	    case COMMANDE:
 		Commander.getInstance()
 			.broadcastMessage("panel=commande", null);
 		break;
-	    case 1:
+	    case COMPTE:
 		Commander.getInstance().broadcastMessage("panel=comptes", null);
 		break;
-	    case 2:
+	    case SYNC:
 		SyncFrame sf = SyncFrame.getInstance();
 		sf.setVisible(true);
 		break;
-	    case 3:
+	    case QUITTER:
 		Commander.getInstance().broadcastMessage("programQUIT", null);
 		break;
-	    case 4:
+	    case STOCK:
 		Commander.getInstance().broadcastMessage("panel=stock", null);
 		break;
 	    default:
