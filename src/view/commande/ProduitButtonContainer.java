@@ -24,28 +24,28 @@ public class ProduitButtonContainer extends JPanel {
     private static final int GRID_MAX_HEIGHT = 0;
 
     public ProduitButtonContainer() {
-	this.setBackground(Color.white);
+        this.setBackground(Color.white);
     }
 
     public void loadFromXml(String path) {
-	SAXParserFactory fabrique = SAXParserFactory.newInstance();
-	SAXParser parseur;
-	try {
-	    parseur = fabrique.newSAXParser();
-	    File fichier = new File(path);
-	    DefaultHandler gestionnaire = new ArticleHandler();
-	    parseur.parse(fichier, gestionnaire);
+        SAXParserFactory fabrique = SAXParserFactory.newInstance();
+        SAXParser parseur;
+        try {
+            parseur = fabrique.newSAXParser();
+            File fichier = new File(path);
+            DefaultHandler gestionnaire = new ArticleHandler();
+            parseur.parse(fichier, gestionnaire);
 
-	    this.setLayout(new GridLayout(GRID_MAX_HEIGHT, GRID_MAX_WIDTH));
+            this.setLayout(new GridLayout(GRID_MAX_HEIGHT, GRID_MAX_WIDTH));
 
-	    for (Article art : ((ArticleHandler) gestionnaire).getAnnuaire()) {
-		this.add(new ProduitButton(art.getName(), art.getImgName(), art
-			.getPrice()));
-	    }
+            for (Article art : ((ArticleHandler) gestionnaire).getAnnuaire()) {
+                this.add(new ProduitButton(art.getName(), art.getImgName(), art
+                        .getPrice()));
+            }
 
-	} catch (ParserConfigurationException e1) {
-	} catch (SAXException e1) {
-	} catch (IOException e) {
-	}
+        } catch (ParserConfigurationException e1) {
+        } catch (SAXException e1) {
+        } catch (IOException e) {
+        }
     }
 }

@@ -31,109 +31,109 @@ public class GlobStockPanel extends JPanel {
     private JButton quit;
 
     public GlobStockPanel(Stock stock) {
-	super();
-	this.stock = stock;
-	this.titre = new JLabel("STOCKS");
+        super();
+        this.stock = stock;
+        this.titre = new JLabel("STOCKS");
 
-	this.titre.setSize(WIDTH, HEIGHT_TITRE);
+        this.titre.setSize(WIDTH, HEIGHT_TITRE);
 
-	this.stockPanel = new StockPanel(this.stock);
+        this.stockPanel = new StockPanel(this.stock);
 
-	this.sP = new JScrollPane(stockPanel);
-	this.sP.setSize(WIDTH, HEIGHT_SCROLL);
+        this.sP = new JScrollPane(stockPanel);
+        this.sP.setSize(WIDTH, HEIGHT_SCROLL);
 
-	this.addItemPanel = new AddItemPanel(this.stock);
+        this.addItemPanel = new AddItemPanel(this.stock);
 
-	this.saveNquit = new JButton("Sauver et Quitter");
-	this.quit = new JButton("Quitter");
-	this.quit.addActionListener(new QuitListner());
+        this.saveNquit = new JButton("Sauver et Quitter");
+        this.quit = new JButton("Quitter");
+        this.quit.addActionListener(new QuitListner());
 
-	init();
+        init();
     }
 
     private void init() {
-	this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-	this.add(this.titre);
-	this.add(sP);
-	this.add(addItemPanel);
-	this.add(saveNquit);
-	this.add(quit);
+        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.add(this.titre);
+        this.add(sP);
+        this.add(addItemPanel);
+        this.add(saveNquit);
+        this.add(quit);
     }
 
     public static void main(String[] args) {
-	Stock st = new Stock();
-	st.loadFromXml();
-	GlobStockPanel sp = new GlobStockPanel(st);
+        Stock st = new Stock();
+        st.loadFromXml();
+        GlobStockPanel sp = new GlobStockPanel(st);
 
-	JFrame f = new JFrame();
-	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	f.setContentPane(sp);
-	f.setSize(WIDTH, HEIGHT);
-	f.pack();
-	f.setVisible(true);
+        JFrame f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setContentPane(sp);
+        f.setSize(WIDTH, HEIGHT);
+        f.pack();
+        f.setVisible(true);
     }
 
     public class QuitListner implements ActionListener {
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	    Commander.getInstance().broadcastMessage("panel=menu", null);
-	}
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Commander.getInstance().broadcastMessage("panel=menu", null);
+        }
 
     }
 
     public JLabel getTitre() {
-	return titre;
+        return titre;
     }
 
     public void setTitre(JLabel titre) {
-	this.titre = titre;
+        this.titre = titre;
     }
 
     public JScrollPane getsP() {
-	return sP;
+        return sP;
     }
 
     public void setsP(JScrollPane sP) {
-	this.sP = sP;
+        this.sP = sP;
     }
 
     public StockPanel getStockPanel() {
-	return stockPanel;
+        return stockPanel;
     }
 
     public void setStockPanel(StockPanel stockPanel) {
-	this.stockPanel = stockPanel;
+        this.stockPanel = stockPanel;
     }
 
     public Stock getStock() {
-	return stock;
+        return stock;
     }
 
     public void setStock(Stock stock) {
-	this.stock = stock;
+        this.stock = stock;
     }
 
     public AddItemPanel getAddItemPanel() {
-	return addItemPanel;
+        return addItemPanel;
     }
 
     public void setAddItemPanel(AddItemPanel addItemPanel) {
-	this.addItemPanel = addItemPanel;
+        this.addItemPanel = addItemPanel;
     }
 
     public JButton getSaveNquit() {
-	return saveNquit;
+        return saveNquit;
     }
 
     public void setSaveNquit(JButton saveNquit) {
-	this.saveNquit = saveNquit;
+        this.saveNquit = saveNquit;
     }
 
     public JButton getQuit() {
-	return quit;
+        return quit;
     }
 
     public void setQuit(JButton quit) {
-	this.quit = quit;
+        this.quit = quit;
     }
 }

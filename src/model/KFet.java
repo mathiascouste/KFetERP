@@ -18,23 +18,23 @@ public final class KFet implements Serializable {
     private Stock stock;
 
     private KFet() {
-	this.journees = new ArrayList<Journee>();
-	this.stock = new Stock();
+        this.journees = new ArrayList<Journee>();
+        this.stock = new Stock();
     }
 
     public static KFet getInstance() {
-	if (instance == null) {
-	    instance = new KFet();
-	}
-	return instance;
+        if (instance == null) {
+            instance = new KFet();
+        }
+        return instance;
     }
 
     public void addJournee(Journee journee) {
-	this.journees.add(journee);
+        this.journees.add(journee);
     }
 
     public String toString() {
-	return "";
+        return "";
     }
 
     public static void loadKFet(SyncFrame f) {
@@ -46,26 +46,26 @@ public final class KFet implements Serializable {
     }
 
     public List<Journee> getJournees() {
-	return journees;
+        return journees;
     }
 
     public void setJournees(List<Journee> journees) {
-	this.journees = journees;
+        this.journees = journees;
     }
 
     public Stock getStock() {
-	return stock;
+        return stock;
     }
 
     public void setStock(Stock stock) {
-	this.stock = stock;
+        this.stock = stock;
     }
 
     public static long getSerialversionuid() {
-	return serialVersionUID;
+        return serialVersionUID;
     }
 
     public static void setInstance(KFet instance) {
-	KFet.instance = instance;
+        KFet.instance = instance;
     }
 }

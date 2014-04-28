@@ -12,27 +12,27 @@ public class GlobCommandePanel extends JPanel {
     private CommandeZone cz;
 
     public GlobCommandePanel() {
-	this.setBackground(Color.white);
-	this.bz = new ButtonZone();
-	this.cz = new CommandeZone();
-	this.setLayout(new BorderLayout());
-	this.add(bz, BorderLayout.CENTER);
-	this.add(cz, BorderLayout.EAST);
+        this.setBackground(Color.white);
+        this.bz = new ButtonZone();
+        this.cz = new CommandeZone();
+        this.setLayout(new BorderLayout());
+        this.add(bz, BorderLayout.CENTER);
+        this.add(cz, BorderLayout.EAST);
     }
 
     public ButtonZone getBz() {
-	return bz;
+        return bz;
     }
 
     public void setBz(ButtonZone bz) {
-	this.bz = bz;
+        this.bz = bz;
     }
 
     public CommandeZone getCz() {
-	return cz;
+        return cz;
     }
 
     public void setCz(CommandeZone cz) {
-	this.cz = cz;
+        this.cz = cz;
     }
 }

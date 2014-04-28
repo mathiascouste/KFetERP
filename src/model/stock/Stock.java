@@ -19,48 +19,48 @@ public class Stock {
     private static final String path = "./data/stock.xml";
 
     public Stock() {
-	this.stocks = new ArrayList<Item>();
+        this.stocks = new ArrayList<Item>();
     }
 
     public void loadFromXml() {
-	SAXParserFactory fabrique = SAXParserFactory.newInstance();
-	SAXParser parseur;
-	try {
-	    parseur = fabrique.newSAXParser();
-	    File fichier = new File(path);
-	    DefaultHandler gestionnaire = new StockHandler();
-	    parseur.parse(fichier, gestionnaire);
+        SAXParserFactory fabrique = SAXParserFactory.newInstance();
+        SAXParser parseur;
+        try {
+            parseur = fabrique.newSAXParser();
+            File fichier = new File(path);
+            DefaultHandler gestionnaire = new StockHandler();
+            parseur.parse(fichier, gestionnaire);
 
-	    stocks.clear();
+            stocks.clear();
 
-	    for (Item item : ((StockHandler) gestionnaire).getStocks()) {
-		stocks.add(item);
-	    }
+            for (Item item : ((StockHandler) gestionnaire).getStocks()) {
+                stocks.add(item);
+            }
 
-	} catch (ParserConfigurationException e1) {
-	} catch (SAXException e1) {
-	} catch (IOException e) {
-	}
+        } catch (ParserConfigurationException e1) {
+        } catch (SAXException e1) {
+        } catch (IOException e) {
+        }
     }
 
     public String toString() {
-	String toRet = "Stock\n";
-	for (Item item : stocks) {
-	    toRet += item + "\n";
-	}
+        String toRet = "Stock\n";
+        for (Item item : stocks) {
+            toRet += item + "\n";
+        }
 
-	return toRet;
+        return toRet;
     }
 
     public List<Item> getStocks() {
-	return stocks;
+        return stocks;
     }
 
     public void setStocks(List<Item> stocks) {
-	this.stocks = stocks;
+        this.stocks = stocks;
     }
 
     public String getPath() {
-	return path;
+        return path;
     }
 }
