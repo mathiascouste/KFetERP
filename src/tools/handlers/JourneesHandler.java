@@ -5,6 +5,8 @@ import java.util.List;
 
 import model.Journee;
 import model.stock.Item;
+import model.time.Date;
+import model.time.InvalidDateException;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -76,7 +78,12 @@ public class JourneesHandler extends DefaultHandler {
             buffer = null;
             inNombre = false;
         } else if (qName.equals("date")) {
-            date = new Date(buffer.toString());
+            try {
+                date = new Date(buffer.toString());
+            } catch (InvalidDateException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             buffer = null;
             inNombre = false;
         } else {
