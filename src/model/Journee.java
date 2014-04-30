@@ -153,4 +153,12 @@ public class Journee {
     public static int getMaxlenght() {
         return MAXLENGHT;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }
