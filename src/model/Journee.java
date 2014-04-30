@@ -34,12 +34,12 @@ public class Journee {
         try {
             date = new Date(dateFormat.format(c.getTime()));
         } catch (InvalidDateException e) {
-        }        
+        }    
     }
     
-    public void toXml() {
+    public String toXml() {
         StringBuilder s = new StringBuilder();
-        s.append("<journee id=\"0\">\n");
+        s.append("<journee>\n");
         s.append("<date>");
         s.append(date.toString());
         s.append("</date>\n");
@@ -50,13 +50,16 @@ public class Journee {
         s.append(sommeTotale);
         s.append("</sommeTotale>\n");
         for(Entry<String, Integer> entry : articles.entrySet()) {
-            String a = entry.getKey();
-            Integer valeur = entry.getValue();
-            s.append("<");
+            s.append("<article>\n");
+            s.append("<nom>");
             s.append(entry.getKey());
-            s.append(">");
+            s.append("</nom>\n");
+            s.append("<nombre>");
+            s.append(entry.getValue());
+            s.append("</nombre>\n");
+            s.append("</article>\n");
         }
-
+        return s.toString();
     }
 
     public void addCommande(Commande commande) {
