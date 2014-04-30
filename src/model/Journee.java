@@ -55,6 +55,7 @@ public class Journee {
             s.append("<");
             s.append(entry.getKey());
             s.append(">");
+            s.append(valeur);
         }
 
     }
