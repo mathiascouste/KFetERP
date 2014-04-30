@@ -1,5 +1,7 @@
 package model.sync;
 
+import model.KFet;
+
 public abstract class Synchronize {
     public static final int UP = 1;
     public static final int DOWN = 0;
@@ -18,9 +20,11 @@ public abstract class Synchronize {
             boolean achatVente, boolean tresorerie, boolean menuPlat) {
         if (commande) {
             downCommande();
+            KFet.getInstance().getJournees().loadFromXml();
             }
             if (stock) {
             downStock();
+            KFet.getInstance().getStock().loadFromXml();
             }
             if (achatVente) {
             downAchatVente();

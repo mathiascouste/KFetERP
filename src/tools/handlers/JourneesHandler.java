@@ -15,11 +15,12 @@ public class JourneesHandler extends DefaultHandler {
     private List<Journee> journees;
     private Journee journee;
     // flags nous indiquant la position du parseur
-    private boolean inJournees, inJournee, inArticle, inNom, inNombre;
+    private boolean inJournees, inJournee, inArticle, inNom, inNombre, inDate;
     // buffer nous permettant de récupérer les données
     private StringBuffer buffer;
-    private String nom;
-    private String nombre;
+    private StringBuffer nom;
+    private StringBuffer nombre;
+    private Date date;
 
     // simple constructeur
     public JourneesHandler() {
@@ -44,6 +45,8 @@ public class JourneesHandler extends DefaultHandler {
                 inNom = true;
             } else if (qName.equals("nombre")) {
                 inNombre = true;
+            } else if (qName.equals("date")) {
+                inDate = true;
             } else {
                 // erreur, on peut lever une exception
                 throw new SAXException("Balise " + qName + " inconnue.");
@@ -60,15 +63,20 @@ public class JourneesHandler extends DefaultHandler {
             journees.add(journee);
             inJournee = false;
         } else if (qName.equals("article")) {
-            journee.getArticles().put(nom.toString(), new Integer(nombre));
+            journee.getArticles().put(nom.toString(), new Integer(nombre.toString()));
+            journee.setDate(date);
             buffer = null;
             inArticle = false;
         } else if (qName.equals("nom")) {
-            nom = buffer.toString();
+            nom = new StringBuffer(buffer.toString());
             buffer = null;
             inNom = false;
         } else if (qName.equals("nombre")) {
-            nombre = buffer.toString();
+            nombre = new StringBuffer(buffer.toString());
+            buffer = null;
+            inNombre = false;
+        } else if (qName.equals("date")) {
+            date = new Date(buffer.toString());
             buffer = null;
             inNombre = false;
         } else {
