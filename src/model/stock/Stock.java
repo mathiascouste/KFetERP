@@ -40,7 +40,7 @@ public class Stock {
         } catch (ParserConfigurationException e1) {
         } catch (SAXException e1) {
         } catch (IOException e) {
-        }
+    }
     }
 
     public String toString() {

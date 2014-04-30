@@ -16,13 +16,13 @@ public class Journee {
     private int nombreCommande;
     private double sommeTotale;
     private List<Commande> commandes;
-    private Map<Article, Integer> articles;
+    private Map<String, Integer> articles;
 
     public Journee() {
         this.nombreCommande = 0;
         this.sommeTotale = 0;
         this.commandes = new ArrayList<Commande>();
-        this.articles = new HashMap<Article, Integer>();
+        this.articles = new HashMap<String, Integer>();
     }
 
     public void addCommande(Commande commande) {
@@ -34,12 +34,12 @@ public class Journee {
 
     private void addArticles(Commande commande) {
         for (Article a : commande.getArticleList()) {
-            if (this.articles.containsKey(a)) {
+            if (this.articles.containsKey(a.toString())) {
                 Integer i = this.articles.get(a);
                 i++;
-                this.articles.put(a, i);
+                this.articles.put(a.getName(), i);
             } else {
-                this.articles.put(a, 1);
+                this.articles.put(a.getName(), 1);
             }
         }
     }
@@ -94,12 +94,12 @@ public class Journee {
         toRet += "Nombre de commande : " + this.nombreCommande + "\n";
         toRet += "Chiffre de la journée : " + this.sommeTotale + "\n";
         toRet += "-----------------Articles-----------------\n";
-        for (java.util.Map.Entry<Article, Integer> entry : this.articles
+        for (java.util.Map.Entry<String, Integer> entry : this.articles
                 .entrySet()) {
-            Article cle = entry.getKey();
+            String cle = entry.getKey();
             int valeur = entry.getValue().intValue();
-            toRet += "\t" + cle.getName() + "\t";
-            if (cle.getName().length() < MAXLENGHT) {
+            toRet += "\t" + cle + "\t";
+            if (cle.length() < MAXLENGHT) {
                 toRet += "\t";
             }
             toRet += ":\t" + valeur + "\n";
@@ -107,5 +107,21 @@ public class Journee {
         toRet += "-----------------Articles-----------------\n";
         toRet += "##########    Recapitulatif journée      ##########\n";
         return toRet;
+    }
+
+    public Map<String, Integer> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(Map<String, Integer> articles) {
+        this.articles = articles;
+    }
+
+    public static int getFrstyr() {
+        return FRSTYR;
+    }
+
+    public static int getMaxlenght() {
+        return MAXLENGHT;
     }
 }
