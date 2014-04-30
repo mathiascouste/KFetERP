@@ -22,45 +22,45 @@ public class ButtonZone extends JPanel {
 
     public ButtonZone() {
 
-	ProduitButtonContainer menuContainer;
-	ProduitButtonContainer platContainer;
-	JLabel menuLabel;
-	JLabel platLabel;
-	JButton validerButton;
-	JScrollPane menuScrollPane;
-	JScrollPane platScrollPane;
+        ProduitButtonContainer menuContainer;
+        ProduitButtonContainer platContainer;
+        JLabel menuLabel;
+        JLabel platLabel;
+        JButton validerButton;
+        JScrollPane menuScrollPane;
+        JScrollPane platScrollPane;
 
-	setPreferredSize(new Dimension(WIDTH, HEIGHT));
-	menuContainer = new ProduitButtonContainer();
-	platContainer = new ProduitButtonContainer();
-	menuContainer.loadFromXml("./data/menu.xml");
-	platContainer.loadFromXml("./data/plat.xml");
-	menuLabel = new JLabel("Menus :");
-	platLabel = new JLabel("Plats :");
-	validerButton = new JButton("VALIDER LA COMMANDE");
-	validerButton.addActionListener(new ValiderButtonListener());
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        menuContainer = new ProduitButtonContainer();
+        platContainer = new ProduitButtonContainer();
+        menuContainer.loadFromXml("./data/menu.xml");
+        platContainer.loadFromXml("./data/plat.xml");
+        menuLabel = new JLabel("Menus :");
+        platLabel = new JLabel("Plats :");
+        validerButton = new JButton("VALIDER LA COMMANDE");
+        validerButton.addActionListener(new ValiderButtonListener());
 
-	menuScrollPane = new JScrollPane(menuContainer);
-	menuScrollPane.setPreferredSize(new Dimension(WIDTH, MENU_HEIGHT));
-	platScrollPane = new JScrollPane(platContainer);
-	platScrollPane.setPreferredSize(new Dimension(WIDTH, PLAT_HEIGHT));
+        menuScrollPane = new JScrollPane(menuContainer);
+        menuScrollPane.setPreferredSize(new Dimension(WIDTH, MENU_HEIGHT));
+        platScrollPane = new JScrollPane(platContainer);
+        platScrollPane.setPreferredSize(new Dimension(WIDTH, PLAT_HEIGHT));
 
-	this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
-	this.add(menuLabel);
-	this.add(menuScrollPane);
-	this.add(platLabel);
-	this.add(platScrollPane);
-	this.add(validerButton);
+        this.add(menuLabel);
+        this.add(menuScrollPane);
+        this.add(platLabel);
+        this.add(platScrollPane);
+        this.add(validerButton);
     }
 
     private class ValiderButtonListener implements ActionListener {
-	public ValiderButtonListener() {
-	}
+        public ValiderButtonListener() {
+        }
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-	    Commander.getInstance().broadcastMessage("validerCommande", null);
-	}
+        @Override
+        public void actionPerformed(ActionEvent arg0) {
+            Commander.getInstance().broadcastMessage("validerCommande", null);
+        }
     }
 }

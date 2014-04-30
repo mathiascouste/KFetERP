@@ -28,50 +28,50 @@ public class ProduitButton extends JPanel implements KPanel {
     private JButton button;
 
     public ProduitButton(String name, String imgName, String price) {
-	this(new Article(name, imgName, price));
+        this(new Article(name, imgName, price));
     }
 
     public ProduitButton(Article article) {
-	Commander.getInstance().addSubscriber(this);
+        Commander.getInstance().addSubscriber(this);
 
-	this.article = article;
-	this.name = article.getName();
-	this.imgName = article.getImgName();
-	this.price = article.getPrice();
+        this.article = article;
+        this.name = article.getName();
+        this.imgName = article.getImgName();
+        this.price = article.getPrice();
 
-	this.setBackground(Color.white);
-	this.nameP = new JLabel(name);
-	this.button = new JButton(new ImageIcon(ImageLoader.getImageLoader(
-		"buttons").getImage(imgName)));
-	this.button.addActionListener(new ProduitButtonListener(this));
-	this.priceP = new JLabel(price);
+        this.setBackground(Color.white);
+        this.nameP = new JLabel(name);
+        this.button = new JButton(new ImageIcon(ImageLoader.getImageLoader(
+                "buttons").getImage(imgName)));
+        this.button.addActionListener(new ProduitButtonListener(this));
+        this.priceP = new JLabel(price);
 
-	this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
-	this.add(this.nameP);
-	this.add(this.button);
-	this.add(this.priceP);
+        this.add(this.nameP);
+        this.add(this.button);
+        this.add(this.priceP);
     }
 
     public Article getArticle() {
-	return article;
+        return article;
     }
 
     public void setArticle(Article article) {
-	this.article = article;
+        this.article = article;
     }
 
     private class ProduitButtonListener implements ActionListener {
-	private ProduitButton pB;
+        private ProduitButton pB;
 
-	public ProduitButtonListener(ProduitButton pb) {
-	    this.pB = pb;
-	}
+        public ProduitButtonListener(ProduitButton pb) {
+            this.pB = pb;
+        }
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-	    pB.sendMessage();
-	}
+        @Override
+        public void actionPerformed(ActionEvent arg0) {
+            pB.sendMessage();
+        }
     }
 
     @Override
@@ -80,59 +80,59 @@ public class ProduitButton extends JPanel implements KPanel {
 
     @Override
     public void sendMessage() {
-	Commander.getInstance().broadcastMessage("addArticleToCommande",
-		this.article);
+        Commander.getInstance().broadcastMessage("addArticleToCommande",
+                this.article);
     }
 
     public String getName() {
-	return name;
+        return name;
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
     public String getImgName() {
-	return imgName;
+        return imgName;
     }
 
     public void setImgName(String imgName) {
-	this.imgName = imgName;
+        this.imgName = imgName;
     }
 
     public String getPrice() {
-	return price;
+        return price;
     }
 
     public void setPrice(String price) {
-	this.price = price;
+        this.price = price;
     }
 
     public JLabel getNameP() {
-	return nameP;
+        return nameP;
     }
 
     public void setNameP(JLabel nameP) {
-	this.nameP = nameP;
+        this.nameP = nameP;
     }
 
     public JLabel getPriceP() {
-	return priceP;
+        return priceP;
     }
 
     public void setPriceP(JLabel priceP) {
-	this.priceP = priceP;
+        this.priceP = priceP;
     }
 
     public JButton getButton() {
-	return button;
+        return button;
     }
 
     public void setButton(JButton button) {
-	this.button = button;
+        this.button = button;
     }
 
     public static long getSerialversionuid() {
-	return serialVersionUID;
+        return serialVersionUID;
     }
 }

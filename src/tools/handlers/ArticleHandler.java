@@ -20,74 +20,74 @@ public class ArticleHandler extends DefaultHandler {
 
     // simple constructeur
     public ArticleHandler() {
-	super();
+        super();
     }
 
     // détection d'ouverture de balise
     public void startElement(String uri, String localName, String qName,
-	    Attributes attributes) throws SAXException {
-	if (qName.equals("xml")) {
-	    annuaire = new LinkedList<Article>();
-	    inAnnuaire = true;
-	} else if (qName.equals("item")) {
-	    personne = new Article();
-	    try {
-		int id = Integer.parseInt(attributes.getValue("id"));
-		personne.setId(id);
-	    } catch (Exception e) {
-		// erreur, le contenu de id n'est pas un entier
-		throw new SAXException(e);
-	    }
-	    inPersonne = true;
-	} else {
-	    buffer = new StringBuffer();
-	    if (qName.equals("nom")) {
-		inNom = true;
-	    } else if (qName.equals("prix")) {
-		inPrenom = true;
-	    } else if (qName.equals("img")) {
-		inAdresse = true;
-	    } else {
-		// erreur, on peut lever une exception
-		throw new SAXException("Balise " + qName + " inconnue.");
-	    }
-	}
+            Attributes attributes) throws SAXException {
+        if (qName.equals("xml")) {
+            annuaire = new LinkedList<Article>();
+            inAnnuaire = true;
+        } else if (qName.equals("item")) {
+            personne = new Article();
+            try {
+                int id = Integer.parseInt(attributes.getValue("id"));
+                personne.setId(id);
+            } catch (Exception e) {
+                // erreur, le contenu de id n'est pas un entier
+                throw new SAXException(e);
+            }
+            inPersonne = true;
+        } else {
+            buffer = new StringBuffer();
+            if (qName.equals("nom")) {
+                inNom = true;
+            } else if (qName.equals("prix")) {
+                inPrenom = true;
+            } else if (qName.equals("img")) {
+                inAdresse = true;
+            } else {
+                // erreur, on peut lever une exception
+                throw new SAXException("Balise " + qName + " inconnue.");
+            }
+        }
     }
 
     // détection fin de balise
     public void endElement(String uri, String localName, String qName)
-	    throws SAXException {
-	if (qName.equals("xml")) {
-	    inAnnuaire = false;
-	} else if (qName.equals("item")) {
-	    annuaire.add(personne);
-	    personne = null;
-	    inPersonne = false;
-	} else if (qName.equals("nom")) {
-	    personne.setName(buffer.toString());
-	    buffer = null;
-	    inNom = false;
-	} else if (qName.equals("prix")) {
-	    personne.setPrice(buffer.toString());
-	    buffer = null;
-	    inPrenom = false;
-	} else if (qName.equals("img")) {
-	    personne.setImgName(buffer.toString());
-	    buffer = null;
-	    inAdresse = false;
-	} else {
-	    // erreur, on peut lever une exception
-	    throw new SAXException("Balise " + qName + " inconnue.");
-	}
+            throws SAXException {
+        if (qName.equals("xml")) {
+            inAnnuaire = false;
+        } else if (qName.equals("item")) {
+            annuaire.add(personne);
+            personne = null;
+            inPersonne = false;
+        } else if (qName.equals("nom")) {
+            personne.setName(buffer.toString());
+            buffer = null;
+            inNom = false;
+        } else if (qName.equals("prix")) {
+            personne.setPrice(buffer.toString());
+            buffer = null;
+            inPrenom = false;
+        } else if (qName.equals("img")) {
+            personne.setImgName(buffer.toString());
+            buffer = null;
+            inAdresse = false;
+        } else {
+            // erreur, on peut lever une exception
+            throw new SAXException("Balise " + qName + " inconnue.");
+        }
     }
 
     // détection de caractères
     public void characters(char[] ch, int start, int length)
-	    throws SAXException {
-	String lecture = new String(ch, start, length);
-	if (buffer != null) {
-	    buffer.append(lecture);
-	}
+            throws SAXException {
+        String lecture = new String(ch, start, length);
+        if (buffer != null) {
+            buffer.append(lecture);
+        }
     }
 
     // début du parsing
@@ -99,66 +99,66 @@ public class ArticleHandler extends DefaultHandler {
     }
 
     public List<Article> getAnnuaire() {
-	return annuaire;
+        return annuaire;
     }
 
     public void setAnnuaire(List<Article> annuaire) {
-	this.annuaire = annuaire;
+        this.annuaire = annuaire;
     }
 
     public Article getPersonne() {
-	return personne;
+        return personne;
     }
 
     public void setPersonne(Article personne) {
-	this.personne = personne;
+        this.personne = personne;
     }
 
     public boolean isInAnnuaire() {
-	return inAnnuaire;
+        return inAnnuaire;
     }
 
     public void setInAnnuaire(boolean inAnnuaire) {
-	this.inAnnuaire = inAnnuaire;
+        this.inAnnuaire = inAnnuaire;
     }
 
     public boolean isInPersonne() {
-	return inPersonne;
+        return inPersonne;
     }
 
     public void setInPersonne(boolean inPersonne) {
-	this.inPersonne = inPersonne;
+        this.inPersonne = inPersonne;
     }
 
     public boolean isInNom() {
-	return inNom;
+        return inNom;
     }
 
     public void setInNom(boolean inNom) {
-	this.inNom = inNom;
+        this.inNom = inNom;
     }
 
     public boolean isInPrenom() {
-	return inPrenom;
+        return inPrenom;
     }
 
     public void setInPrenom(boolean inPrenom) {
-	this.inPrenom = inPrenom;
+        this.inPrenom = inPrenom;
     }
 
     public boolean isInAdresse() {
-	return inAdresse;
+        return inAdresse;
     }
 
     public void setInAdresse(boolean inAdresse) {
-	this.inAdresse = inAdresse;
+        this.inAdresse = inAdresse;
     }
 
     public StringBuffer getBuffer() {
-	return buffer;
+        return buffer;
     }
 
     public void setBuffer(StringBuffer buffer) {
-	this.buffer = buffer;
+        this.buffer = buffer;
     }
 }

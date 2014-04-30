@@ -23,18 +23,18 @@ public class KFrame extends JFrame implements KPanel {
     private GlobStockPanel stockPanel;
 
     public KFrame() {
-	Commander.getInstance().addSubscriber(this);
+        Commander.getInstance().addSubscriber(this);
 
-	this.commandePanel = new GlobCommandePanel();
-	this.menuPanel = new GlobMenuPanel();
-	this.stockPanel = new GlobStockPanel(KFet.getInstance().getStock());
+        this.commandePanel = new GlobCommandePanel();
+        this.menuPanel = new GlobMenuPanel();
+        this.stockPanel = new GlobStockPanel(KFet.getInstance().getStock());
 
-	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	this.setSize(new Dimension(WIDTH, HEIGHT));
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(new Dimension(WIDTH, HEIGHT));
 
-	this.getContentPane().add(this.menuPanel);
+        this.getContentPane().add(this.menuPanel);
 
-	this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class KFrame extends JFrame implements KPanel {
 
     @Override
     public void sendMessage() {
-	// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
 
     }
 }

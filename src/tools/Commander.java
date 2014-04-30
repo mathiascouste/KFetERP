@@ -10,23 +10,23 @@ public final class Commander {
     private List<KPanel> subscriber;
 
     private Commander() {
-	this.subscriber = new ArrayList<KPanel>();
+        this.subscriber = new ArrayList<KPanel>();
     }
 
     public static Commander getInstance() {
-	if (instance == null) {
-	    instance = new Commander();
-	}
-	return instance;
+        if (instance == null) {
+            instance = new Commander();
+        }
+        return instance;
     }
 
     public void addSubscriber(KPanel kp) {
-	this.subscriber.add(kp);
+        this.subscriber.add(kp);
     }
 
     public void broadcastMessage(String message, Object object) {
-	for (KPanel kp : this.subscriber) {
-	    kp.readMessage(message, object);
-	}
+        for (KPanel kp : this.subscriber) {
+            kp.readMessage(message, object);
+        }
     }
 }

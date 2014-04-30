@@ -5,48 +5,48 @@ public class Article {
     private String name, imgName, price;
 
     public Article() {
-	this("", "", "0.0");
+        this("", "", "0.0");
     }
 
     public Article(String name, String imgName, String price) {
-	this.name = name;
-	this.imgName = imgName;
-	this.price = price;
+        this.name = name;
+        this.imgName = imgName;
+        this.price = price;
     }
 
     public String toString() {
-	return name + "........" + price + " €";
+        return name + "........" + price + " €";
     }
 
     public int getId() {
-	return id;
+        return id;
     }
 
     public void setId(int id) {
-	this.id = id;
+        this.id = id;
     }
 
     public String getName() {
-	return name;
+        return name;
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
     public String getImgName() {
-	return imgName;
+        return imgName;
     }
 
     public void setImgName(String imgName) {
-	this.imgName = imgName;
+        this.imgName = imgName;
     }
 
     public String getPrice() {
-	return price;
+        return price;
     }
 
     public void setPrice(String price) {
-	this.price = price;
+        this.price = price;
     }
 }
