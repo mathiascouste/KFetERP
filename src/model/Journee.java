@@ -21,7 +21,7 @@ public class Journee {
     private int nombreCommande;
     private double sommeTotale;
     private List<Commande> commandes;
-    private Map<Article, Integer> articles;
+    private Map<String, Integer> articles;
     private Date date;
 
     public Journee() {
@@ -49,8 +49,8 @@ public class Journee {
         s.append("<sommeTotale>");
         s.append(sommeTotale);
         s.append("</sommeTotale>\n");
-        for(Entry<Article, Integer> entry : articles.entrySet()) {
-            Article a = entry.getKey();
+        for(Entry<String, Integer> entry : articles.entrySet()) {
+            String a = entry.getKey();
             Integer valeur = entry.getValue();
             s.append("<");
             s.append(entry.getKey());
