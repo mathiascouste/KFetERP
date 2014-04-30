@@ -11,6 +11,7 @@ import view.commande.GlobCommandePanel;
 import view.interfaces.KPanel;
 import view.menu.GlobMenuPanel;
 import view.stock.GlobStockPanel;
+import view.sync.SyncFrame;
 
 public class KFrame extends JFrame implements KPanel {
     private static final long serialVersionUID = 1L;
@@ -38,25 +39,26 @@ public class KFrame extends JFrame implements KPanel {
 
     @Override
     public void readMessage(String message, Object object) {
-	if (message.equals("panel=commande") && object == null) {
-	    this.getContentPane().removeAll();
-	    this.getContentPane().add(this.commandePanel);
-	    this.pack();
-	} else if (message.equals("panel=menu") && object == null) {
-	    this.getContentPane().removeAll();
-	    this.getContentPane().add(this.menuPanel);
-	    this.pack();
-	} else if (message.equals("panel=stock") && object == null) {
-	    this.getContentPane().removeAll();
-	    this.getContentPane().add(this.stockPanel);
-	    this.pack();
-	} else if (message.equals("panel=comptes") && object == null) {
-
-	} else if (message.equals("panel=transf") && object == null) {
-
-	} else if (message.equals("programQUIT") && object == null) {
-	    this.dispose();
-	}
+    	if (message.equals("panel=commande")) {
+    	    this.getContentPane().removeAll();
+    	    this.getContentPane().add(this.commandePanel);
+    	    this.pack();
+    	} else if (message.equals("panel=menu")) {
+    	    this.getContentPane().removeAll();
+    	    this.getContentPane().add(this.menuPanel);
+    	    this.pack();
+    	} else if (message.equals("panel=stock")) {
+    	    this.getContentPane().removeAll();
+    	    this.getContentPane().add(this.stockPanel);
+    	    this.pack();
+    	} else if (message.equals("panel=comptes")) {
+    
+    	} else if (message.equals("panel=transf")) {
+    
+    	} else if (message.equals("programQUIT")) {
+    	    this.dispose();
+    	    SyncFrame.getInstance().dispose();
+    	}
     }
 
     @Override

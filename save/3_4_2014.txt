@@ -1,7 +1,11 @@
 ##########    Recapitulatif journée      ##########
-Date : 9/4/2014
-Nombre de commande : 0
-Chiffre de la journée : 0.0
+Date : 30/4/2014
+Nombre de commande : 1
+Chiffre de la journée : 4.8
 -----------------Articles-----------------
+	cafe		:	1
+	nouille		:	1
+	Menu HotDog	:	1
+	boisson		:	1
 -----------------Articles-----------------
 ##########    Recapitulatif journée      ##########

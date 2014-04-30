@@ -65,11 +65,9 @@ public class CommandePanel extends JPanel implements KPanel {
 	    Article article = (Article) object;
 	    this.addToCommande(article);
 	}
-	if (message.equals("validerCommande") && object == null) {
-	    if (!this.commande.isEmpty()) {
-		Commander.getInstance().broadcastMessage(message,
+	if (message.equals("validerCommande") && object == null && !this.commande.isEmpty()) {
+	    Commander.getInstance().broadcastMessage(message,
 			this.nextCommande());
-	    }
 	}
     }
 

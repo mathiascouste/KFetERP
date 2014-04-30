@@ -6,39 +6,50 @@ public abstract class Synchronize {
 
     public static void sync(int way, boolean commande, boolean stock,
 	    boolean achatVente, boolean tresorerie, boolean menuPlat) {
+        
 	if (way == UP) {
-	    if (commande) {
-		upCommande();
-	    }
-	    if (stock) {
-		upStock();
-	    }
-	    if (achatVente) {
-		upAchatVente();
-	    }
-	    if (tresorerie) {
-		upTresorerie();
-	    }
-	    if (menuPlat) {
-		upMenuPlat();
-	    }
+	    up(commande,stock,achatVente,tresorerie,menuPlat);
 	} else {
-	    if (commande) {
-		downCommande();
-	    }
-	    if (stock) {
-		downStock();
-	    }
-	    if (achatVente) {
-		downAchatVente();
-	    }
-	    if (tresorerie) {
-		downTresorerie();
-	    }
-	    if (menuPlat) {
-		downMenuPlat();
-	    }
+	    down(commande,stock,achatVente,tresorerie,menuPlat);
 	}
+    }
+
+    private static void down(boolean commande, boolean stock,
+            boolean achatVente, boolean tresorerie, boolean menuPlat) {
+        if (commande) {
+            downCommande();
+            }
+            if (stock) {
+            downStock();
+            }
+            if (achatVente) {
+            downAchatVente();
+            }
+            if (tresorerie) {
+            downTresorerie();
+            }
+            if (menuPlat) {
+            downMenuPlat();
+            }
+    }
+
+    private static void up(boolean commande, boolean stock, boolean achatVente,
+            boolean tresorerie, boolean menuPlat) {
+        if (commande) {
+            upCommande();
+            }
+            if (stock) {
+            upStock();
+            }
+            if (achatVente) {
+            upAchatVente();
+            }
+            if (tresorerie) {
+            upTresorerie();
+            }
+            if (menuPlat) {
+            upMenuPlat();
+            }
     }
 
     private static void downMenuPlat() {

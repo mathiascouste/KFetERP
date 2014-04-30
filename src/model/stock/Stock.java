@@ -16,7 +16,7 @@ import tools.handlers.StockHandler;
 
 public class Stock {
     private List<Item> stocks;
-    private static final String path = "./data/stock.xml";
+    private static final String PATH = "./data/stock.xml";
 
     public Stock() {
 	this.stocks = new ArrayList<Item>();
@@ -27,7 +27,7 @@ public class Stock {
 	SAXParser parseur;
 	try {
 	    parseur = fabrique.newSAXParser();
-	    File fichier = new File(path);
+	    File fichier = new File(PATH);
 	    DefaultHandler gestionnaire = new StockHandler();
 	    parseur.parse(fichier, gestionnaire);
 
@@ -60,7 +60,7 @@ public class Stock {
 	this.stocks = stocks;
     }
 
-    public String getPath() {
-	return path;
+    public static String getPath() {
+        return PATH;
     }
 }

@@ -29,7 +29,7 @@ public class ItemPanel extends JPanel {
     public ItemPanel(Item item) {
 	this.setMinimumSize(new Dimension(WIDTH, HEIGHT));
 	df = new DecimalFormat("0.00");
-	df.setMinimumFractionDigits(2); // nb de chiffres apres la virgule
+	df.setMinimumFractionDigits(2);
 	this.item = item;
 	this.nbrMarch = new JTextField(String.valueOf(item.getNbrMarch()));
 	this.nbrMarch.setHorizontalAlignment(JTextField.CENTER);
