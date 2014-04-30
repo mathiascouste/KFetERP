@@ -3,26 +3,60 @@ package model;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import model.time.Date;
+import model.time.InvalidDateException;
 
 public class Journee {
-    private static final int FRSTYR = 1900;
     private static final int MAXLENGHT = 8;
 
     private int nombreCommande;
     private double sommeTotale;
     private List<Commande> commandes;
     private Map<Article, Integer> articles;
+    private Date date;
 
     public Journee() {
         this.nombreCommande = 0;
         this.sommeTotale = 0;
         this.commandes = new ArrayList<Commande>();
         this.articles = new HashMap<Article, Integer>();
+        Calendar c = Calendar.getInstance();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            date = new Date(dateFormat.format(c.getTime()));
+        } catch (InvalidDateException e) {
+        }        
+    }
+    
+    public void toXml() {
+        StringBuilder s = new StringBuilder();
+        s.append("<journee id=\"0\">\n");
+        s.append("<date>");
+        s.append(date.toString());
+        s.append("</date>\n");
+        s.append("<nombreCommande>");
+        s.append(nombreCommande);
+        s.append("</nombreCommande>\n");
+        s.append("<sommeTotale>");
+        s.append(sommeTotale);
+        s.append("</sommeTotale>\n");
+        for(Entry<Article, Integer> entry : articles.entrySet()) {
+            Article a = entry.getKey();
+            Integer valeur = entry.getValue();
+            s.append("<");
+            s.append(entry.getKey());
+            s.append(">");
+        }
+
     }
 
     public void addCommande(Commande commande) {
@@ -68,11 +102,9 @@ public class Journee {
         this.commandes = commandes;
     }
 
-    @SuppressWarnings("deprecation")
     public void saveJournee() {
-        Date d = new Date();
-        String path = "./save/" + d.getDay() + "_" + (d.getMonth() + 1) + "_"
-                + (d.getYear() + FRSTYR) + ".txt";
+        String path = "./save/" + date.getDay() + "_" + (date.getMonth()) + "_"
+                + (date.getYear()) + ".txt";
         try {
             FileWriter fileWriter = new FileWriter(path, false);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -84,13 +116,11 @@ public class Journee {
         }
     }
 
-    @SuppressWarnings("deprecation")
     public String toString() {
         String toRet = "";
-        Date d = new Date();
         toRet += "##########    Recapitulatif journée      ##########\n";
-        toRet += "Date : " + d.getDate() + "/" + (d.getMonth() + 1) + "/"
-                + (d.getYear() + FRSTYR) + "\n";
+        toRet += "Date : " + date.getDay() + "/" + (date.getMonth()) + "/"
+                + (date.getYear()) + "\n";
         toRet += "Nombre de commande : " + this.nombreCommande + "\n";
         toRet += "Chiffre de la journée : " + this.sommeTotale + "\n";
         toRet += "-----------------Articles-----------------\n";
