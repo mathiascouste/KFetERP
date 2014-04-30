@@ -1,0 +1,32 @@
+<xml>
+	<journee id="0">
+		<date>30-04-2014</date>
+		<nbCommandes>2</nbCommandes>
+		<gainTotal>6,8</gainTotal>
+		
+		<article>
+			<nom>menuCroq</nom>
+			<nombre>2</nombre>
+		</article>
+		<article>
+			<nom>menuNouille</nom>
+			<nombre>1</nombre>
+		</article>
+		<article>
+			<nom>menuHotDog</nom>
+			<nombre>0</nombre>
+		</article>
+		
+		<nbMenuCroq>2</nbMenuCroq>
+		<nbMenuNouille>1</nbMenuNouille>
+		<nbMenuHotdog>0</nbMenuHotdog>
+		<nbMenuSalade>0</nbMenuSalade>
+		<nbGaufre>0</nbGaufre>
+		<nbBoisson>1</nbBoisson>
+		<nbCroq1>0</nbCroq1>
+		<nbCroq2>0</nbCroq2>
+		<nbHotdog>0</nbHotdog>
+		<nbNouille>0</nbNouille>
+		<nbCafe>0</nbCafe>
+	</journee>
+</xml>
