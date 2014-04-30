@@ -88,7 +88,7 @@ public class Journee {
     public String toString() {
         String toRet = "";
         Date d = new Date();
-        toRet += "########## Recapitulatif journée ##########\n";
+        toRet += "##########    Recapitulatif journée      ##########\n";
         toRet += "Date : " + d.getDate() + "/" + (d.getMonth() + 1) + "/"
                 + (d.getYear() + FRSTYR) + "\n";
         toRet += "Nombre de commande : " + this.nombreCommande + "\n";
@@ -105,7 +105,7 @@ public class Journee {
             toRet += ":\t" + valeur + "\n";
         }
         toRet += "-----------------Articles-----------------\n";
-        toRet += "########## Recapitulatif journée ##########\n";
+        toRet += "##########    Recapitulatif journée      ##########\n";
         return toRet;
     }
 
