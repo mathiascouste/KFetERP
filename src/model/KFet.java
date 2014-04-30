@@ -1,25 +1,39 @@
 package model;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+import tools.handlers.StockHandler;
 import view.sync.SyncFrame;
 
+import model.stock.Item;
 import model.stock.Stock;
 
 public final class KFet implements Serializable {
-    /**
-	 * 
-	 */
+
     private static final long serialVersionUID = 1L;
     private static KFet instance;
-    private List<Journee> journees;
+    private Journees journees;
     private Stock stock;
 
     private KFet() {
-        this.journees = new ArrayList<Journee>();
+        this.journees = new Journees();
         this.stock = new Stock();
+    }
+    
+    public void loadFromXml() {
+        this.stock.loadFromXml();
+        this.journees.loadFromXml();
     }
 
     public static KFet getInstance() {
@@ -45,11 +59,11 @@ public final class KFet implements Serializable {
 
     }
 
-    public List<Journee> getJournees() {
+    public Journees getJournees() {
         return journees;
     }
 
-    public void setJournees(List<Journee> journees) {
+    public void setJournees(Journees journees) {
         this.journees = journees;
     }
 

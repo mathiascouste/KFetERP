@@ -10,6 +10,7 @@ public abstract class Test {
         loadInRam();
 
         KFet.getInstance().getStock().loadFromXml();
+        KFet.getInstance().getJournees().loadFromXml();
 
         KFrame test = new KFrame();
         test.setVisible(true);
